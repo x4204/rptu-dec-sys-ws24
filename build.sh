@@ -1,7 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
-set -e
+set -euo pipefail
 
-docker build --progress=plain --tag kubo:local .
-docker run --rm -it -v ./:/cwd kubo:local cp /go/bin/ipfs /cwd/ipfs
-ln -s $PWD/.ipfs $HOME/.ipfs 2>/dev/null || true
+branch='dec-sys'
+
+cd kubo
+if [ $(git branch --show-current) != $branch ]; then
+  echo 'ERROR: kubo submodule is not on branch' $branch
+  exit 1
+else
+  make build
+fi

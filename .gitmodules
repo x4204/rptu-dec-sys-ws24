@@ -1,0 +1,4 @@
+[submodule "kubo"]
+	path = kubo
+	url = git@github.com:x4204/rptu-dec-sys-ws24-kubo.git
+	branch = dec-sys

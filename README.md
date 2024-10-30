@@ -1,16 +1,22 @@
 # Decentralized Systems
 
+## Setup
+
+```
+git submodule update --init --recursive
+```
+
 
 ## Milestone 1: compile kubo from the source
 
-Docker is being used for the build process. To build `ipfs`:
+Build dependencies:
+- `go` version 1.23
+- `make`
+
+To build:
 ```
 $ ./build.sh
 ```
-This shell script will:
-- build `ipfs`
-- copy the binary into the current directory
-- symlink `~/.ipfs` to `./.ipfs`
 
 To use `ipfs`:
 ```
