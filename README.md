@@ -66,6 +66,12 @@ list, so it should look like this:
 ## Milestone 4: make IPFS nodes never connect to other nodes automatically
 
 - see: `milestone4.patch`
+```
+rows 093-143: get all routers at the start of the node
+rows 167-173: get all routers that can do contentRouting
+rows 198-204: get all routers obtained from different methods
+rows 263-317: try to connect to nodes after unexpected errors
+```
 
 - apply patch:
 ```
