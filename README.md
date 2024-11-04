@@ -72,3 +72,23 @@ Open "routing.go" and delete rows:
 - 167-173 (Get all routers that can do contentRouting)
 - 93-143 (Get all routers at the start of the node)
 
+Now we need to build our changes. From main directory of Kubo:
+```
+$ cd cmd/ipfs
+```
+
+```
+$ go build .
+```
+
+Start the node
+```
+$ ./ipfs daemon
+```
+
+And check if there are pears
+```
+$ ipfs swarm peers
+```
+
+If there are no pears then the result of the command must be empty
