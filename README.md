@@ -26,7 +26,12 @@ $ ./ipfs --help
 
 ## Milestone 2: upload a file using IPFS daemon
 
-- https://docs.ipfs.tech/how-to/command-line-quick-start
+Docs: https://docs.ipfs.tech/how-to/command-line-quick-start
+
+- create a symlink so that the config points to `.ipfs` in the current repo
+```
+$ ln -s $PWD/.ipfs ~/.ipfs
+```
 
 ```
 $ ./ipfs init
@@ -52,43 +57,34 @@ Files files/quickstart.pdf and /tmp/quickstart.pdf are identical
 
 ## Milestone 3: delete all bootstrap nodes
 
-Go to "config" file in its default directory( probably "/home/$user_name/.ipfs")
-
-Find "Bootstrap" record and delete everything from list, so it should look like 
+Open `$HOME/.ipfs/config`, find `"Bootstrap"` record and delete everything from
+list, so it should look like this:
 ```
 "Bootstrap": [],
 ```
 
 ## Milestone 4: make IPFS nodes never connect to other nodes automatically
 
-Go to "routing.go" in Kubo directory. From main directory of Kubo:
+- see: `milestone4.patch`
+
+- apply patch:
 ```
-$ cd core/node/libp2p
+patch -p0 kubo/core/node/libp2p/routing.go < milestone4.patch
 ```
 
-Open "routing.go" and delete rows:
-- 263-317 (Try to connect to nodes after unexpected errors)
-- 198-204 (Get all routers obtained from different methods)
-- 167-173 (Get all routers that can do contentRouting)
-- 93-143 (Get all routers at the start of the node)
-
-Now we need to build our changes. From main directory of Kubo:
+- rebuild
 ```
-$ cd cmd/ipfs
+./build.sh
 ```
 
-```
-$ go build .
-```
-
-Start the node
+- start the node:
 ```
 $ ./ipfs daemon
 ```
 
-And check if there are pears
+- check if there are peers:
 ```
-$ ipfs swarm peers
+$ ./ipfs swarm peers
 ```
 
-If there are no pears then the result of the command must be empty
+If there are no peers then the result of the command must be empty
