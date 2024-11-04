@@ -99,3 +99,5 @@ $ ./ipfs swarm peers
 ```
 
 If there are no peers then the result of the command must be empty
+
+NOTE: cannot access `/webui` with these changes though
