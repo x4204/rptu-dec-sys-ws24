@@ -1,5 +1,5 @@
---- core/node/libp2p/routing.go	2024-11-04 18:28:34.243494790 +0100
-+++ core/node/libp2p/routing.go	2024-11-04 18:28:29.363592641 +0100
+--- core/node/libp2p/routing.go	2024-11-04 20:37:03.643408793 +0100
++++ core/node/libp2p/routing.go	2024-11-04 20:36:50.231182871 +0100
 @@ -7,12 +7,9 @@
  	"sort"
  	"time"
@@ -86,21 +86,16 @@
  
  	return routinghelpers.Tiered{
  		Routers: routers,
-@@ -195,13 +133,6 @@
+@@ -195,6 +133,8 @@
  	})
  
  	var cRouters []*routinghelpers.ParallelRouter
--	for _, v := range routers {
--		cRouters = append(cRouters, &routinghelpers.ParallelRouter{
--			IgnoreError:             true,
--			DoNotWaitForSearchValue: true,
--			Router:                  v.Routing,
--		})
--	}
- 
- 	return routinghelpers.NewComposableParallel(cRouters)
- }
-@@ -251,7 +182,7 @@
++
++	// TODO: removing this causes a crash on `./ipfs init`
+ 	for _, v := range routers {
+ 		cRouters = append(cRouters, &routinghelpers.ParallelRouter{
+ 			IgnoreError:             true,
+@@ -251,7 +191,7 @@
  
  func autoRelayFeeder(cfgPeering config.Peering, peerChan chan<- peer.AddrInfo) fx.Option {
  	return fx.Invoke(func(lc fx.Lifecycle, h host.Host, dht *ddht.DHT) {
@@ -109,12 +104,10 @@
  		done := make(chan struct{})
  
  		defer func() {
-@@ -260,61 +191,6 @@
- 				debug.PrintStack()
- 			}
+@@ -262,58 +202,6 @@
  		}()
--		go func() {
--			defer close(done)
+ 		go func() {
+ 			defer close(done)
 -
 -			// Feed peers more often right after the bootstrap, then backoff
 -			bo := backoff.NewExponentialBackOff()
@@ -167,7 +160,6 @@
 -					}
 -				}
 -			}
--		}()
+ 		}()
  
  		lc.Append(fx.Hook{
- 			OnStop: func(_ context.Context) error {
