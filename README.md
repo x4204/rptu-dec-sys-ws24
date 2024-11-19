@@ -1,5 +1,13 @@
 # Decentralized Systems
 
+## Prerequisites
+
+- `git`
+- `go` version 1.23
+- `make`
+- `python` version >= 3.11
+
+
 ## Setup
 
 ```
@@ -8,10 +16,6 @@ git submodule update --init --recursive
 
 
 ## Milestone 1: compile kubo from the source
-
-Build dependencies:
-- `go` version 1.23
-- `make`
 
 To build:
 ```
@@ -60,7 +64,7 @@ Files files/quickstart.pdf and /tmp/quickstart.pdf are identical
 
 - remove bootstrap nodes from the config file:
 ```
-$ jq '.Bootstrap = []' .ipfs/config > .ipfs/config.new && mv .ipfs/config{.new,}
+$ ipfs bootstrap rm --all
 ```
 
 
@@ -101,3 +105,36 @@ $ ./ipfs swarm peers
 If there are no peers then the result of the command must be empty
 
 NOTE: cannot access `/webui` with these changes though
+
+
+## Milestone 5: create a private IPFS network with a specific topology
+
+References:
+- https://github.com/ahester57/ipfs-private-swarm#2-generate-swarmkey
+- https://freedium.cfd/https://medium.com/@s_van_laar/deploy-a-private-ipfs-network-on-ubuntu-in-5-steps-5aad95f7261b
+- https://raw.githubusercontent.com/ipfs-cluster/ipfs-cluster/master/docker-compose.yml
+
+Swarm key: `.docker/kubo/swarm.key`
+
+To build the Docker image:
+```
+$ ./build-image.sh
+```
+
+See `milestone5/*.toml` for a list of available topologies
+
+To deploy a specific topology:
+```
+$ python -m milestone5.main deploy milestone5/<topology>.toml
+```
+
+To visualise a specific topology:
+```
+$ python -m milestone5.main graphviz milestone5/<topology>.toml
+```
+then copy+paste the output here:
+https://dreampuf.github.io/GraphvizOnline/#digraph%20G%20{}
+
+- [ ] add config for grid
+- [ ] add config for complete graph
+- [ ] add config for random graph
