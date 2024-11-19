@@ -218,7 +218,6 @@ def deploy_topology(topology):
         for thread in threads:
             thread.join()
         time.sleep(1)
-        print()
 
 
 def visualise_topology(topology):
@@ -227,7 +226,7 @@ def visualise_topology(topology):
         print(f'  "{node}" [shape=square];')
     print()
     for a, b in topology['links']:
-        print(f'  "{a}" -> "{b}";')
+        print(f'  "{a}" -> "{b}" [dir=both];')
     print('}')
 
 

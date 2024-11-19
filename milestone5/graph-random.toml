@@ -1,0 +1,35 @@
+nodes = [
+  'ipfs-00',
+  'ipfs-01',
+  'ipfs-02',
+  'ipfs-03',
+  'ipfs-04',
+  'ipfs-05',
+  'ipfs-06',
+  'ipfs-07',
+  'ipfs-08',
+  'ipfs-09',
+  'ipfs-10',
+]
+
+links = [
+  ['ipfs-00', 'ipfs-01'],
+  ['ipfs-00', 'ipfs-02'],
+  ['ipfs-01', 'ipfs-02'],
+  ['ipfs-03', 'ipfs-00'],
+  ['ipfs-03', 'ipfs-01'],
+  ['ipfs-04', 'ipfs-01'],
+  ['ipfs-04', 'ipfs-02'],
+  ['ipfs-05', 'ipfs-00'],
+  ['ipfs-05', 'ipfs-02'],
+  ['ipfs-06', 'ipfs-01'],
+  ['ipfs-06', 'ipfs-05'],
+  ['ipfs-07', 'ipfs-02'],
+  ['ipfs-07', 'ipfs-06'],
+  ['ipfs-08', 'ipfs-04'],
+  ['ipfs-08', 'ipfs-06'],
+  ['ipfs-09', 'ipfs-02'],
+  ['ipfs-09', 'ipfs-08'],
+  ['ipfs-10', 'ipfs-01'],
+  ['ipfs-10', 'ipfs-06']
+]
