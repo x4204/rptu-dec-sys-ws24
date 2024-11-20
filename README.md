@@ -150,3 +150,8 @@ Basically same as Milestone 5 but with docker.
 **NOTE:** "[...] able to run multiple IPFS peers simultaneously [...] try to
 start multiple IPFS daemons locally". What is the difference between a peer and
 a daemon in this context?
+
+
+## Milestone 7: write a IPFS network simulator
+
+Basically the same as Milestone 7, but automated, given a topology config.
