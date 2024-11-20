@@ -141,3 +141,12 @@ config:
 ogma.generate.barabasiAlbert({ nodes: 11, m0: 3, m: 2 })
 ```
 https://doc.linkurious.com/ogma/latest/examples/generator-barabasi-albert.html
+
+
+## Milestone 6: use docker to run your customized IPFS daemon
+
+Basically same as Milestone 5 but with docker.
+
+**NOTE:** "[...] able to run multiple IPFS peers simultaneously [...] try to
+start multiple IPFS daemons locally". What is the difference between a peer and
+a daemon in this context?
