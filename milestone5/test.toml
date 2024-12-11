@@ -1,8 +1,10 @@
 nodes = [
   'ipfs-00',
   'ipfs-01',
+  'ipfs-02',
 ]
 
 links = [
   ['ipfs-00', 'ipfs-01'],
+  ['ipfs-01', 'ipfs-02'],
 ]

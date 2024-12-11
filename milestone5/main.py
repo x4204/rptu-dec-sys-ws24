@@ -5,6 +5,7 @@ if sys.version_info < (3, 11):
     raise SystemExit(1)
 
 import glob
+import json
 import math
 import pprint
 import re
@@ -45,6 +46,15 @@ def validate_topology(topology):
     if len(orphaned) != 0:
         print(f'ERROR: orphaned nodes: {orphaned}')
         raise SystemExit(1)
+
+    topology['networks'] = {
+        name: [
+            f'net_{a}_{b}'
+            for a, b in topology['links']
+            if a == name or b == name
+        ]
+        for name in topology['nodes']
+    }
 
     print('INFO: done')
 
@@ -89,16 +99,31 @@ def generate_docker_compose_yml(topology):
     print('INFO: generating docker-compose.yml')
 
     with open('docker-compose.yml', 'w') as file:
+        networks = set([
+            name
+            for names in topology['networks'].values()
+            for name in names
+        ])
+        file.write('networks:\n')
+        for name in networks:
+            file.write(f"  {name}:\n")
+        file.write('\n')
+
         file.write('services:\n')
         for index, node in enumerate(topology['nodes']):
             file.write(f'  {node}:\n')
             file.write(f"    image: 'kubo:local'\n")
+            file.write(f"    sysctls:\n")
+            file.write(f"      - 'net.ipv6.conf.all.disable_ipv6=1'\n")
             file.write(f'    environment:\n')
             file.write(f"      LIBP2P_FORCE_PNET: '1'\n")
             file.write(f'    volumes:\n')
             file.write(f"      - './.docker/kubo/{node}:/data/ipfs'\n")
             file.write(f"      - './.docker/kubo/swarm.key:/data/ipfs/swarm.key'\n")
             file.write(f"      - './.docker/kubo/container-init.d:/container-init.d'\n")
+            file.write(f'    networks:\n')
+            for name in topology['networks'][node]:
+                file.write(f"      - '{name}'\n")
             if index != len(topology['nodes']) - 1:
                 file.write('\n')
 
@@ -120,7 +145,7 @@ def setup_ipfs_nodes(topology):
         time.sleep(1)
 
     nodes = {
-        name: { 'container': None, 'ip': None, 'id': None }
+        name: { 'container': None, 'ips': {}, 'id': None }
         for name in topology['nodes']
     }
 
@@ -149,14 +174,14 @@ def setup_ipfs_nodes(topology):
     for name, attrs in nodes.items():
         print(f'  {name}')
         result = run_process(
-            [
-                'docker', 'inspect', '-f',
-                '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}',
-                attrs['container'],
-            ],
+            ['docker', 'inspect', attrs['container']],
             capture_output=True,
         )
-        attrs['ip'] = result.stdout.decode().strip()
+        networks = json.loads(result.stdout)
+        networks = networks[0]['NetworkSettings']['Networks']
+        for name, config in networks.items():
+            name = name[name.index('net'):]
+            attrs['ips'][name] = config['IPAddress']
 
     print('INFO: done')
     print('-' * 50)
@@ -182,7 +207,7 @@ def setup_ipfs_nodes(topology):
         print(f'  {a} <-> {b}')
         name = a
         address = '/'.join([
-            '/ip4', nodes[b]['ip'],
+            '/ip4', nodes[b]['ips'][f'net_{a}_{b}'],
             'tcp/4001/ipfs', nodes[b]['id'],
         ])
         run_process(
@@ -204,6 +229,8 @@ def deploy_topology(topology):
     remove_ipfs_storage()
     create_ipfs_storage(topology)
     generate_docker_compose_yml(topology)
+
+    # TODO: validate that nodes do not connect to each other unless specified
 
     threads = [
         Thread(target=start_containers),

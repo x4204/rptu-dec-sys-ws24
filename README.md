@@ -155,3 +155,10 @@ a daemon in this context?
 ## Milestone 7: write a IPFS network simulator
 
 Basically the same as Milestone 7, but automated, given a topology config.
+
+
+## Milestone 8: profile different topologies and the original IPFS daemon
+
+TODO: make sure nodes don't connect to each other. For example in topology:
+A <--> B <--> C. On file upload/download they should not connect to each other,
+A should not automatically on C.
