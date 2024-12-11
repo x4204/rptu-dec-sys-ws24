@@ -8,6 +8,7 @@ ENV SRC_DIR /kubo
 
 # Download packages first so they can be cached.
 COPY go.mod go.sum $SRC_DIR/
+COPY go-libp2p-kad-dht/ $SRC_DIR/go-libp2p-kad-dht/
 RUN cd $SRC_DIR \
   && go mod download
 
