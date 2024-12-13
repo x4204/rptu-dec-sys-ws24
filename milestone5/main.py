@@ -100,6 +100,7 @@ def generate_docker_compose_yml(topology):
             file.write(f"      - './.docker/kubo/{node}:/data/ipfs'\n")
             file.write(f"      - './.docker/kubo/swarm.key:/data/ipfs/swarm.key'\n")
             file.write(f"      - './.docker/kubo/container-init.d:/container-init.d'\n")
+            file.write(f"      - './kubo/cmd/ipfs/ipfs:/usr/local/bin/ipfs'\n")
             if index != len(topology['nodes']) - 1:
                 file.write('\n')
 
@@ -194,22 +195,6 @@ def setup_ipfs_nodes(topology):
         )
 
     print('INFO: done')
-
-    # TODO: comment out: https://github.com/libp2p/go-libp2p-kad-dht/blob/master/dht.go#L707
-
-    # TODO: validate nodes are not peering unless specified
-    # docker compose exec ipfs-00 ipfs add /data/ipfs/config
-    # docker compose exec ipfs-02 ipfs cat /ipfs/QmRAo18R2mPBEaae4jWc58Z9oMBAq7W1aEcjUCcAMx6BrQ
-    # there should not be any extra peers for every node
-
-    # "runtime/debug"
-    # debug.PrintStack()
-
-    # "peer found"
-
-    # + dht_bootstrap.go
-    # ? handlers.go
-    # ? pb/message.go
 
     print('-' * 50)
     print('INFO: READY !!!!')

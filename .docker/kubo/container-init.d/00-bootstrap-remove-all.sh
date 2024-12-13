@@ -1,1 +1,0 @@
-ipfs bootstrap rm --all

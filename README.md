@@ -155,3 +155,16 @@ a daemon in this context?
 ## Milestone 7: write a IPFS network simulator
 
 Basically the same as Milestone 7, but automated, given a topology config.
+
+
+## Milestone 8: profile different topologies and the original IPFS daemon
+
+NOTE: current workarounds made in the code to force kubo respect a specific
+topology does not seem to work fully. Given the following peer topology:
+```
+00 <--> 01
+01 <--> 02
+```
+(notice that `00` and `02` are not peered), if `00` uploads a file, then it's
+not possible to fetch the same file from `02` (unless `01` fetches it first).
+What's the problem? Is that intended behaviour?
