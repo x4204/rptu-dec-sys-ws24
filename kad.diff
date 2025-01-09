@@ -1,0 +1,49 @@
+diff --git a/./dht.go b/home/rpopa/Documents/tmp/kubo/go-libp2p-kad-dht/dht.go
+index c8fb3c7..79eb8cf 100644
+--- a/./dht.go
++++ b/home/rpopa/Documents/tmp/kubo/go-libp2p-kad-dht/dht.go
+@@ -203,7 +203,7 @@ func New(ctx context.Context, h host.Host, options ...Option) (*IpfsDHT, error)
+ 	dht.maxRecordAge = cfg.MaxRecordAge
+ 	dht.enableProviders = cfg.EnableProviders
+ 	dht.enableValues = cfg.EnableValues
+-	dht.disableFixLowPeers = cfg.DisableFixLowPeers
++	dht.disableFixLowPeers = true //cfg.DisableFixLowPeers
+ 
+ 	dht.Validator = cfg.Validator
+ 	dht.msgSender = net.NewMessageSenderImpl(h, dht.protocols)
+@@ -239,14 +239,14 @@ func New(ctx context.Context, h host.Host, options ...Option) (*IpfsDHT, error)
+ 	// since RT membership is decoupled from connectivity
+ 	go dht.persistRTPeersInPeerStore()
+ 
+-	dht.rtPeerLoop()
++	//dht.rtPeerLoop()
+ 
+ 	// Fill routing table with currently connected peers that are DHT servers
+ 	for _, p := range dht.host.Network().Peers() {
+ 		dht.peerFound(p)
+ 	}
+ 
+-	dht.rtRefreshManager.Start()
++	//dht.rtRefreshManager.Start()
+ 
+ 	// listens to the fix low peers chan and tries to fix the Routing Table
+ 	if !dht.disableFixLowPeers {
+diff --git a/./dht_bootstrap.go b/home/rpopa/Documents/tmp/kubo/go-libp2p-kad-dht/dht_bootstrap.go
+index 03029ad..2d67b86 100644
+--- a/./dht_bootstrap.go
++++ b/home/rpopa/Documents/tmp/kubo/go-libp2p-kad-dht/dht_bootstrap.go
+@@ -22,13 +22,7 @@ const (
+ )
+ 
+ func init() {
+-	for _, s := range []string{
+-		"/dnsaddr/bootstrap.libp2p.io/p2p/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN",
+-		"/dnsaddr/bootstrap.libp2p.io/p2p/QmQCU2EcMqAqQPR2i9bChDtGNJchTbq5TbXJJ16u19uLTa",
+-		"/dnsaddr/bootstrap.libp2p.io/p2p/QmbLHAnMoJPWSCR5Zhtx6BHJX9KiKNN6tpvbUcqanj75Nb",
+-		"/dnsaddr/bootstrap.libp2p.io/p2p/QmcZf59bWwK5XFi76CZX8cbJ4BhTzzA3gU1ZjYZcYW3dwt",
+-		"/ip4/104.131.131.82/tcp/4001/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ", // mars.i.ipfs.io
+-	} {
++	for _, s := range []string{} {
+ 		ma, err := multiaddr.NewMultiaddr(s)
+ 		if err != nil {
+ 			panic(err)

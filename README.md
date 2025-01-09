@@ -70,41 +70,7 @@ $ ipfs bootstrap rm --all
 
 ## Milestone 4: make IPFS nodes never connect to other nodes automatically
 
-- see: `milestone4.patch`
-```
-rows 093-143: get all routers at the start of the node (bootstrap peers)
-
-rows 167-173: get all routers that can do contentRouting
-
-rows 198-204: get all routers obtained from different methods (commented out
-for now, because otherwise ./ipfs init panics)
-
-rows 263-317: try to connect to nodes after unexpected errors
-```
-
-- apply patch:
-```
-patch -p0 kubo/core/node/libp2p/routing.go < milestone4.patch
-```
-
-- rebuild
-```
-./build.sh
-```
-
-- start the node:
-```
-$ ./ipfs daemon
-```
-
-- check if there are peers:
-```
-$ ./ipfs swarm peers
-```
-
-If there are no peers then the result of the command must be empty
-
-NOTE: cannot access `/webui` with these changes though
+See `kubo.diff` and `kad.diff`
 
 
 ## Milestone 5: create a private IPFS network with a specific topology
@@ -168,3 +134,10 @@ topology does not seem to work fully. Given the following peer topology:
 (notice that `00` and `02` are not peered), if `00` uploads a file, then it's
 not possible to fetch the same file from `02` (unless `01` fetches it first).
 What's the problem? Is that intended behaviour?
+
+> ![NOTE]
+> According to the TA, the above is expected behaviour and perfectly fine,
+> because ipfs has some kind of "lazy download".
+
+- [ ] use for simulation: https://aioipfs.readthedocs.io/en/latest/
+- [ ] warmup?

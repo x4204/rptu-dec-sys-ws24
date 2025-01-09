@@ -1,0 +1,40 @@
+diff --git a/./kubo/config/bootstrap_peers.go b/home/rpopa/Documents/tmp/kubo/config/bootstrap_peers.go
+similarity index 78%
+rename from ./kubo/config/bootstrap_peers.go
+rename to /home/rpopa/Documents/tmp/kubo/config/bootstrap_peers.go
+index 1671d9f..91e0f2d 100644
+--- a/./kubo/config/bootstrap_peers.go
++++ b/home/rpopa/Documents/tmp/kubo/config/bootstrap_peers.go
+@@ -14,15 +14,7 @@ import (
+ //
+ // NOTE: This is here -- and not inside cmd/ipfs/init.go -- because of an
+ // import dependency issue. TODO: move this into a config/default/ package.
+-var DefaultBootstrapAddresses = []string{
+-	"/dnsaddr/bootstrap.libp2p.io/p2p/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN",
+-	"/dnsaddr/bootstrap.libp2p.io/p2p/QmQCU2EcMqAqQPR2i9bChDtGNJchTbq5TbXJJ16u19uLTa",
+-	"/dnsaddr/bootstrap.libp2p.io/p2p/QmbLHAnMoJPWSCR5Zhtx6BHJX9KiKNN6tpvbUcqanj75Nb",
+-	"/dnsaddr/bootstrap.libp2p.io/p2p/QmcZf59bWwK5XFi76CZX8cbJ4BhTzzA3gU1ZjYZcYW3dwt",
+-	"/ip4/104.131.131.82/tcp/4001/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ",         // mars.i.ipfs.io
+-	"/ip4/104.131.131.82/udp/4001/quic-v1/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ", // mars.i.ipfs.io
+-}
+-
++var DefaultBootstrapAddresses = []string{}
+ // ErrInvalidPeerAddr signals an address is not a valid peer address.
+ var ErrInvalidPeerAddr = errors.New("invalid peer address")
+ 
+diff --git a/./kubo/config/init.go b/home/rpopa/Documents/tmp/kubo/config/init.go
+similarity index 99%
+rename from ./kubo/config/init.go
+rename to /home/rpopa/Documents/tmp/kubo/config/init.go
+index f40d373..48123b7 100644
+--- a/./kubo/config/init.go
++++ b/home/rpopa/Documents/tmp/kubo/config/init.go
+@@ -43,7 +43,7 @@ func InitWithIdentity(identity Identity) (*Config, error) {
+ 		Identity:  identity,
+ 		Discovery: Discovery{
+ 			MDNS: MDNS{
+-				Enabled: true,
++				Enabled: false,
+ 			},
+ 		},
+ 

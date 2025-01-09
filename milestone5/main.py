@@ -49,7 +49,24 @@ def validate_topology(topology):
     print('INFO: done')
 
 
+
+def create_stub_compose_if_needed():
+    try:
+        with open('docker-compose.yml'):
+            return
+    except FileNotFoundError:
+        pass
+
+    with open('docker-compose.yml', 'w') as file:
+        file.write('services:\n')
+        file.write(f'  ipfs-00:\n')
+        file.write(f"    image: 'kubo:local'\n")
+        file.write('\n')
+
+
 def stop_and_remove_containers():
+    create_stub_compose_if_needed()
+
     print('-' * 50)
     print('INFO: stopping and removing containers')
 
@@ -100,7 +117,7 @@ def generate_docker_compose_yml(topology):
             file.write(f"      - './.docker/kubo/{node}:/data/ipfs'\n")
             file.write(f"      - './.docker/kubo/swarm.key:/data/ipfs/swarm.key'\n")
             file.write(f"      - './.docker/kubo/container-init.d:/container-init.d'\n")
-            file.write(f"      - './kubo/cmd/ipfs/ipfs:/usr/local/bin/ipfs'\n")
+            # file.write(f"      - './kubo/cmd/ipfs/ipfs:/usr/local/bin/ipfs'\n")
             if index != len(topology['nodes']) - 1:
                 file.write('\n')
 
