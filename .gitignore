@@ -3,3 +3,4 @@ __pycache__
 /.docker/kubo/ipfs-*
 /docker-compose.yml
 /ipfs
+/topology-state.json

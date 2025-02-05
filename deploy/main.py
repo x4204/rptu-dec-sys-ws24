@@ -5,6 +5,7 @@ if sys.version_info < (3, 11):
     raise SystemExit(1)
 
 import glob
+import json
 import math
 import pprint
 import re
@@ -194,6 +195,9 @@ def setup_ipfs_nodes(topology):
 
     print('INFO: done')
     pprint.pprint(nodes)
+    with open('topology-state.json', 'w') as file:
+        file.write(json.dumps(nodes, indent=2, sort_keys=True))
+
     print('-' * 50)
     print('INFO: configuring topology')
 
@@ -252,14 +256,14 @@ def visualise_topology(topology):
 def main():
     if len(sys.argv) != 3:
         print('ERROR: <cmd> <topology> were not provided')
-        print('usage: python -m milestone5.main <cmd> <topology>')
+        print('usage: python -m deploy.main <cmd> <topology>')
         raise SystemExit(1)
 
     _, cmd, topology_path = sys.argv
     with open(topology_path, 'rb') as file:
         topology = tomllib.load(file)
 
-    if cmd == 'deploy':
+    if cmd == 'up':
         deploy_topology(topology)
     elif cmd == 'graphviz':
         visualise_topology(topology)
