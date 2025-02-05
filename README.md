@@ -113,10 +113,6 @@ https://doc.linkurious.com/ogma/latest/examples/generator-barabasi-albert.html
 
 Basically same as Milestone 5 but with docker.
 
-**NOTE:** "[...] able to run multiple IPFS peers simultaneously [...] try to
-start multiple IPFS daemons locally". What is the difference between a peer and
-a daemon in this context?
-
 
 ## Milestone 7: write a IPFS network simulator
 
@@ -124,6 +120,8 @@ Basically the same as Milestone 7, but automated, given a topology config.
 
 
 ## Milestone 8: profile different topologies and the original IPFS daemon
+
+See `benchmark/main.py` and `stats/main.py`.
 
 NOTE: current workarounds made in the code to force kubo respect a specific
 topology does not seem to work fully. Given the following peer topology:
