@@ -46,13 +46,14 @@ the routing table and add it (\verb|go-libp2p-kad-dht/dht.go| -
 
 \section{Implementation}
 
-The code is organized into two repositories:
+The code is organized in two repositories:
 \begin{itemize}
 \item https://github.com/x4204/rptu-dec-sys-ws24-kubo - this repository
-contains the modified source code of Kubo
+contains the modified source code of Kubo. All code changes can be found on
+branch \verb|dec-sys|
 \item https://github.com/x4204/rptu-dec-sys-ws24 - this repository contains
-everything else related to the lab (deployment, benchmark and metric gathering
-scripts as well as documentation on how to setup and run them)
+everything else related to the lab itself: deployment, benchmark and metric
+gathering scripts as well as documentation on how to setup and run them
 \end{itemize}
 
 \textbf{Code changes.}\\
@@ -94,15 +95,12 @@ As an additional measure, we also set the environment variable
 \verb|LIBP2P_FORCE_PNET=1| to force the usage of private networks, as suggested
 in the documentation.
 
-% You need to explain the modifications you make to the source code and why these
-% modifications achieve the desired goals.
-
 \textbf{Peer behaviour simulation.}\\
 The deployment of any specific topology is automated
 \footnote{https://github.com/x4204/rptu-dec-sys-ws24/blob/master/deploy/main.py}
 and is capable of deploying nodes and linking them according to a given config
-file, but also visualising it. Topology files are just a list of nodes and
-links between them, for example:
+file as well visualising it. Topology files are just a list of nodes and links
+between them, for example:
 \begin{lstlisting}
 nodes = [
   'ipfs-00',
@@ -127,31 +125,163 @@ links = [
 \textcolor{red}{
   \textbf{TODO:} You need to display your results in a clear and understandable
   way with concrete numbers. Based on the results and profiles you obtained
-  from simula- tions, you need to compare the performance of different
-  topologies and explain the differences. Then, you need to discuss which
-  topologies result in benefits to network performance.
+  from simulations, you need to compare the performance of different topologies
+  and explain the differences. Then, you need to discuss which topologies
+  result in benefits to network performance.
 }
 
-\textcolor{red}{\textbf{Benchmarking methodology}}\\
-...
+\textbf{Benchmarking methodology}\\
+In every test the entire topology is recreated and the storage is wiped to
+ensure a clean state. Container metrics are collected using docker stats. File
+sizes take values from \verb|1 MiB| to \verb|500 MiB| and follow the zipf
+distribution with parameter $a=1.5$. The content of the files is randomly
+generated using \verb|/dev/urandom| device as a source for randomness. The
+benchmark runs for 5 minutes with 100 concurrent clients and a 85/15 read/write
+workload. Nodes are chosen uniformly at random for upload/download.
 
-\textcolor{red}{\textbf{Case 1: ...}}\\
-...
+\textcolor{red}{\textbf{TODO: compute average for every usecase and metric}}\\
 
-\textcolor{red}{\textbf{Case 2: ...}}\\
-...
+\subsection{\textcolor{red}{Case 1: Kubo without source code modifications}}
 
-\textcolor{red}{\textbf{Case 2: ...}}\\
-...
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/original/blk_read.png}
+\caption{Original Kubo -- amount of bytes read from disk}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/original/blk_write.png}
+\caption{Original Kubo -- amount of bytes written to disk}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/original/cpu_usage.png}
+\caption{Original Kubo -- CPU usage}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/original/mem_usage.png}
+\caption{Original Kubo -- memory usage}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/original/net_read.png}
+\caption{Original Kubo -- amount of bytes received over network}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/original/net_write.png}
+\caption{Original Kubo -- amount of bytes transmitted over network}
+\end{figure}
 
-\textcolor{red}{\textbf{Case n: ...}}\\
-...
 
-\textcolor{red}{\textbf{Observed behaviour}}\\
-...
+\subsection{\textcolor{red}{Case 2: Ring Topology}}
+
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/ring/blk_read.png}
+\caption{Ring topology -- amount of bytes read from disk}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/ring/blk_write.png}
+\caption{Ring topology -- amount of bytes written to disk}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/ring/cpu_usage.png}
+\caption{Ring topology -- CPU usage}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/ring/mem_usage.png}
+\caption{Ring topology -- memory usage}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/ring/net_read.png}
+\caption{Ring topology -- amount of bytes received over network}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/ring/net_write.png}
+\caption{Ring topology -- amount of bytes transmitted over network}
+\end{figure}
 
 
-\textcolor{red}{\textbf{Conclusion}}\\
+\subsection{\textcolor{red}{Case 3: Grid Topology}}
+
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/grid/blk_read.png}
+\caption{Grid topology -- amount of bytes read from disk}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/grid/blk_write.png}
+\caption{Grid topology -- amount of bytes written to disk}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/grid/cpu_usage.png}
+\caption{Grid topology -- CPU usage}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/grid/mem_usage.png}
+\caption{Grid topology -- memory usage}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/grid/net_read.png}
+\caption{Grid topology -- amount of bytes received over network}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/grid/net_write.png}
+\caption{Grid topology -- amount of bytes transmitted over network}
+\end{figure}
+
+
+\subsection{\textcolor{red}{Case 4: Random Graph Topology}}
+
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/graph-random/blk_read.png}
+\caption{Random graph topology -- amount of bytes read from disk}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/graph-random/blk_write.png}
+\caption{Random graph topology -- amount of bytes written to disk}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/graph-random/cpu_usage.png}
+\caption{Random graph topology -- CPU usage}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/graph-random/mem_usage.png}
+\caption{Random graph topology -- memory usage}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/graph-random/net_read.png}
+\caption{Random graph topology -- amount of bytes received over network}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/graph-random/net_write.png}
+\caption{Random graph topology -- amount of bytes transmitted over network}
+\end{figure}
+
+
+\subsection{\textcolor{red}{Case 5: Complete Graph Topology}}
+
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/graph-complete/blk_read.png}
+\caption{Complete graph topology -- amount of bytes read from disk}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/graph-complete/blk_write.png}
+\caption{Complete graph topology -- amount of bytes written to disk}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/graph-complete/cpu_usage.png}
+\caption{Complete graph topology -- CPU usage}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/graph-complete/mem_usage.png}
+\caption{Complete graph topology -- memory usage}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/graph-complete/net_read.png}
+\caption{Complete graph topology -- amount of bytes received over network}
+\end{figure}
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{figures/graph-complete/net_write.png}
+\caption{Complete graph topology -- amount of bytes transmitted over network}
+\end{figure}
+
+
+\subsection{\textcolor{red}{Conclusion}}
 ...
 
 
