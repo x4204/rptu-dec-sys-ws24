@@ -133,9 +133,19 @@ topology does not seem to work fully. Given the following peer topology:
 not possible to fetch the same file from `02` (unless `01` fetches it first).
 What's the problem? Is that intended behaviour?
 
-> ![NOTE]
+> [!NOTE]
 > According to the TA, the above is expected behaviour and perfectly fine,
 > because ipfs has some kind of "lazy download".
 
 - [ ] use for simulation: https://aioipfs.readthedocs.io/en/latest/
 - [ ] warmup?
+
+- run benchmark (see `benchmark/README.md` for setup instructions)
+```
+python -m benchmark.main
+```
+
+- collect docker stats
+```
+docker compose stats --format=json | python3.12 -m stats.main > stats.ndjson
+```

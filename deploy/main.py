@@ -114,6 +114,8 @@ def generate_docker_compose_yml(topology):
             file.write(f'    environment:\n')
             file.write(f"      LIBP2P_FORCE_PNET: '1'\n")
             # file.write(f"      IPFS_LOGGING: 'debug'\n")
+            file.write(f'    ports:\n')
+            file.write(f'      - \'50{node[-2:]}:5001\'\n')
             file.write(f'    volumes:\n')
             file.write(f"      - './.docker/kubo/{node}:/data/ipfs'\n")
             file.write(f"      - './.docker/kubo/swarm.key:/data/ipfs/swarm.key'\n")
