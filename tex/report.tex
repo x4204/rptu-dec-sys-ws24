@@ -3,6 +3,55 @@
 \begin{document}
 \input{header.tex}
 
-charts here
+\section{Basic ideas of IPFS}
+
+% https://docs.ipfs.tech/concepts/file-systems/#unix-file-system-unixfs
+% ipfs add --help
+% ipfs cat --help
+\subsection{File upload, download and storage}
+
+A file can be uploaded to IPFS by issuing \verb|ipfs add PATH...| on the
+command line. The \verb|ipfs add| command is handled in
+\verb|kubo/core/commands/add.go|, which later delegates everything to
+\verb|UnixfsAPI.Add()|. There the file is split into smaller parts called
+chunks, if necessary, and a CID is computed for every chunk. If the file is
+small enough, only one chunk will be created. Additionally, layouting is
+performed: file chunks are arranged into a Merkle DAG and uploaded. Metadata
+about the chunks is stored in a UnixFS node. There are two strategies for
+building the Merkle DAG: \verb|balanced| (default) and \verb|trickle|. When the
+upload for all chunks is done, the CID of the root of the DAG is returned to
+the user as a reference to the file.
+
+A file can be downloaded from IPFS by issuing \verb|ipfs cat IPFS-PATH...| on
+the command line. The CID is used to lookup the content in the DHT and find
+IPFS instances that store the content linked by the CID. When downloading a
+file, the Merkle DAG is traversed in in-order and the content of every chunk is
+sent back. It is also possible to read only a particular byte range from the
+file by specifying the offset and length.
+
+
+\subsection{Peer connections}
+
+Kubo has a hardcoded list of bootstrap nodes
+(\verb|go-libp2p-kad-dht/dht_bootstrap.go| and
+\verb|config/bootstrap_peers.go|). When launched, it will try to automatically
+connect to them and fill its routing table with peers. From time to time (10
+minutes by default), it will evict peers if not reachable
+(\verb|go-libp2p-kad-dht/rtrefresh/rt_refresh_manager.go|). If an IPFS instance
+is encountered while querying (\verb|go-libp2p-kad-dht/query.go| -
+\verb|IpfsDHT.runQuery()|), Kubo will check if it is eligible to be added to
+the routing table and add it (\verb|go-libp2p-kad-dht/dht.go| -
+\verb|IpfsDHT.rtPeerLoop()|).
+
+
+\section{Implementation}
+
+...
+
+
+\section{Results}
+
+...
+
 
 \end{document}
