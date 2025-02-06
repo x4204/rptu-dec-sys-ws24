@@ -217,7 +217,6 @@ def setup_ipfs_nodes(topology):
             ],
         )
 
-
     with open('topology-state.json', 'w') as file:
         file.write(json.dumps(nodes, indent=2, sort_keys=True))
 

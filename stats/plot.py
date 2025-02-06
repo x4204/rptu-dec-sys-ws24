@@ -1,6 +1,7 @@
 import collections
 import json
 import matplotlib.pyplot as plt
+import sys
 
 from datetime import datetime
 
@@ -28,6 +29,10 @@ def parse_timestamp(timestamp):
 def parse_size(text):
     if text.endswith('kB'):
         return int(float(text[:-2]) * (1000 ** 1))
+    if text.endswith('MB'):
+        return int(float(text[:-2]) * (1000 ** 2))
+    if text.endswith('GB'):
+        return int(float(text[:-2]) * (1000 ** 3))
     if text.endswith('MiB'):
         return int(float(text[:-3]) * (1024 ** 2))
     if text.endswith('GiB'):
@@ -64,10 +69,10 @@ def parse_stat_line(line):
     return stat
 
 
-def read_stats():
+def read_stats(path):
     stats = collections.defaultdict(list)
 
-    with open('stats/stats.ndjson') as file:
+    with open(path) as file:
         for line in file:
             stat = parse_stat_line(line)
             stats[stat['name']].append(stat)
@@ -75,7 +80,14 @@ def read_stats():
     return stats
 
 
-def main(stats):
+def main():
+    if len(sys.argv) != 3:
+        print('usage: python -m stats.plot <in-path> <out-path>')
+        raise SystemExit(1)
+
+    _, in_path, out_path = sys.argv
+
+    stats = read_stats(in_path)
     assert len(stats) <= len(COLORS), f'{len(stats)} > {len(COLORS)}'
 
     metrics = [
@@ -108,9 +120,9 @@ def main(stats):
             bbox_to_anchor=(0.5, 1.1),
         )
         # plt.show()
-        plt.savefig(f'tex/figures/{metric_name}.png', bbox_inches='tight')
+        plt.savefig(f'{out_path}/{metric_name}.png', bbox_inches='tight')
         plt.clf()
 
 
 if __name__ == '__main__':
-    main(read_stats())
+    main()

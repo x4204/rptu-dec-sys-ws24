@@ -139,7 +139,7 @@ What's the problem? Is that intended behaviour?
 
 - run benchmark (see `benchmark/README.md` for setup instructions)
 ```
-python -m benchmark.main
+timeout 5m python -m benchmark.main 10
 ```
 
 - collect docker stats

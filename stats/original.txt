@@ -1,0 +1,312 @@
++ docker compose exec ipfs-00 ipfs swarm peers
+/ip4/172.24.0.10/tcp/4001/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.10/tcp/46630/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.11/tcp/4001/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.11/tcp/48074/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.12/tcp/4001/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.12/tcp/46458/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.3/tcp/4001/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.3/tcp/4001/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.4/tcp/35110/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.4/tcp/4001/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.5/tcp/4001/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.5/tcp/54090/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.7/tcp/4001/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.7/tcp/4001/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.8/tcp/4001/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.8/tcp/50976/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.9/tcp/4001/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
+/ip4/172.24.0.9/tcp/51210/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
++ docker compose exec ipfs-01 ipfs swarm peers
+/ip4/172.24.0.10/tcp/4001/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.10/tcp/4001/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.11/tcp/4001/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.11/tcp/4001/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.12/tcp/4001/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.12/tcp/4001/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.2/tcp/4001/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.2/tcp/4001/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.3/tcp/4001/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.3/tcp/4001/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.4/tcp/4001/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.4/tcp/4001/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.5/tcp/4001/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.5/tcp/4001/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.7/tcp/4001/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.7/tcp/4001/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.9/tcp/4001/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
+/ip4/172.24.0.9/tcp/4001/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
++ docker compose exec ipfs-02 ipfs swarm peers
+/ip4/172.24.0.10/tcp/4001/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.10/tcp/59638/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.11/tcp/4001/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.11/tcp/4001/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.12/tcp/4001/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.12/tcp/54190/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.2/tcp/4001/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.2/tcp/50160/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.3/tcp/4001/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.3/tcp/4001/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.4/tcp/4001/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.4/tcp/4001/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.5/tcp/4001/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.5/tcp/51154/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.8/tcp/38752/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.8/tcp/4001/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.9/tcp/4001/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
+/ip4/172.24.0.9/tcp/49522/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
++ docker compose exec ipfs-03 ipfs swarm peers
+/ip4/172.24.0.10/tcp/4001/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.10/tcp/58744/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.11/tcp/4001/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.11/tcp/54996/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.12/tcp/4001/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.12/tcp/4001/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.2/tcp/4001/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.2/tcp/4001/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.3/tcp/34338/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.3/tcp/4001/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.5/tcp/4001/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.5/tcp/53226/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.7/tcp/37980/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.7/tcp/4001/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.8/tcp/4001/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.8/tcp/59888/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.9/tcp/4001/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
+/ip4/172.24.0.9/tcp/52328/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
++ docker compose exec ipfs-04 ipfs swarm peers
+/ip4/172.24.0.11/tcp/4001/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.11/tcp/4001/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.12/tcp/4001/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.12/tcp/58996/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.2/tcp/4001/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.2/tcp/4001/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.3/tcp/4001/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.3/tcp/4001/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.4/tcp/4001/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.4/tcp/4001/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.5/tcp/4001/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.5/tcp/52536/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.7/tcp/4001/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.7/tcp/4001/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.8/tcp/4001/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.8/tcp/55452/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.9/tcp/4001/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
+/ip4/172.24.0.9/tcp/55532/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
++ docker compose exec ipfs-05 ipfs swarm peers
+/ip4/172.24.0.10/tcp/4001/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.10/tcp/4001/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.11/tcp/4001/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.11/tcp/4001/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.12/tcp/4001/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.12/tcp/4001/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.2/tcp/4001/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.2/tcp/4001/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.3/tcp/4001/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.3/tcp/4001/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.4/tcp/4001/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.4/tcp/4001/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.7/tcp/4001/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.7/tcp/4001/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.8/tcp/4001/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.8/tcp/58826/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.9/tcp/4001/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
+/ip4/172.24.0.9/tcp/4001/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
++ docker compose exec ipfs-06 ipfs swarm peers
+/ip4/172.24.0.10/tcp/4001/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.10/tcp/45418/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.11/tcp/4001/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.11/tcp/4001/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.12/tcp/4001/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.12/tcp/48398/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.2/tcp/37114/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.2/tcp/4001/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.3/tcp/4001/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.3/tcp/58462/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.4/tcp/4001/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.4/tcp/54028/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.5/tcp/4001/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.5/tcp/48202/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.7/tcp/4001/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.7/tcp/46384/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.8/tcp/4001/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.8/tcp/60710/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.9/tcp/4001/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
+/ip4/172.24.0.9/tcp/43796/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
++ docker compose exec ipfs-07 ipfs swarm peers
+/ip4/172.24.0.10/tcp/37954/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.10/tcp/4001/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.11/tcp/4001/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.11/tcp/4001/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.12/tcp/4001/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.12/tcp/4001/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.2/tcp/4001/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.2/tcp/49732/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.4/tcp/4001/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.4/tcp/4001/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.5/tcp/39916/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.5/tcp/4001/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.7/tcp/4001/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.7/tcp/52068/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.8/tcp/37778/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.8/tcp/4001/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.9/tcp/4001/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
+/ip4/172.24.0.9/tcp/53978/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
++ docker compose exec ipfs-08 ipfs swarm peers
+/ip4/172.24.0.10/tcp/4001/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.10/tcp/4001/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.11/tcp/4001/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.11/tcp/4001/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.2/tcp/4001/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.2/tcp/4001/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.3/tcp/4001/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.3/tcp/50386/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.4/tcp/4001/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.4/tcp/50842/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.5/tcp/38616/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.5/tcp/4001/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.7/tcp/4001/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.7/tcp/4001/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.8/tcp/4001/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.8/tcp/49086/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.9/tcp/4001/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
++ docker compose exec ipfs-09 ipfs swarm peers
+/ip4/172.24.0.10/tcp/4001/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.10/tcp/59686/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.12/tcp/33894/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.12/tcp/4001/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.2/tcp/4001/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.2/tcp/4001/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.3/tcp/4001/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.3/tcp/48684/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.4/tcp/4001/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.4/tcp/4001/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.5/tcp/4001/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.5/tcp/58750/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.6/tcp/54278/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.7/tcp/34162/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.7/tcp/4001/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.8/tcp/36870/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.8/tcp/4001/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.9/tcp/4001/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
+/ip4/172.24.0.9/tcp/4001/p2p/12D3KooWLdiqjvsyB55otHDpt4FgNjssnFn98RXyZFThEKyTiWLo
++ docker compose exec ipfs-10 ipfs swarm peers
+/ip4/172.24.0.10/tcp/4001/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.10/tcp/4001/p2p/12D3KooWBcerC8jjFKL4MVZjNCYneufkjdxKW643KgjsidHfgUNW
+/ip4/172.24.0.11/tcp/4001/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.11/tcp/49092/p2p/12D3KooWSn9RyvgYbyieA9vSYgUvkqCNrKQAi4VBnarMGJAHFJK2
+/ip4/172.24.0.12/tcp/4001/p2p/12D3KooWNL5ELBPzDWgbDLXFgdAoCf5rxXgiHCDdCiCPdjyVie4g
+/ip4/172.24.0.2/tcp/4001/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.2/tcp/4001/p2p/12D3KooWFvgEp2nV2fxXhz2MekvTN3qJwxkfhyQmCPvhxDgTh3wz
+/ip4/172.24.0.3/tcp/4001/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.3/tcp/4001/p2p/12D3KooWLg42MSHmXozwT2b8HWi4xLiSfNNDWNNGFbk6wVCKkNzN
+/ip4/172.24.0.4/tcp/4001/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.4/tcp/4001/p2p/12D3KooWNX3ck3MAb28dEWyNjLospSiWeTfuGBo2pDw6EPhXU4Sj
+/ip4/172.24.0.5/tcp/4001/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.5/tcp/59918/p2p/12D3KooWL3z4vzaw53UvV54roQKuNa992KALShbfjuff9Jcs1cDa
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.6/tcp/4001/p2p/12D3KooWBS19DbUoZxc9p1Zww7CYyRE5oCAB12bgk9JJrzXj9qRZ
+/ip4/172.24.0.7/tcp/4001/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.7/tcp/4001/p2p/12D3KooWLL4V4J9ieKioq6NzWLALMu9jPR1y5zmyKPQfmyCbGT4B
+/ip4/172.24.0.8/tcp/4001/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+/ip4/172.24.0.8/tcp/43648/p2p/12D3KooWQTAwhADqu4pcCvEAYzBqr62ZtitDPQ68MdgemQuVsYU4
+
+» docker ps                     
+CONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS         PORTS                                                                            NAMES
+5b1c75764cc7   kubo:local   "/sbin/tini -- /usr/…"   9 minutes ago   Up 9 minutes   4001/tcp, 8080-8081/tcp, 4001/udp, 0.0.0.0:5003->5001/tcp, [::]:5003->5001/tcp   rptu-dec-sys-ws24-ipfs-03-1
+04294e7585ca   kubo:local   "/sbin/tini -- /usr/…"   9 minutes ago   Up 9 minutes   4001/tcp, 8080-8081/tcp, 4001/udp, 0.0.0.0:5006->5001/tcp, [::]:5006->5001/tcp   rptu-dec-sys-ws24-ipfs-06-1
+7070d1b79d1f   kubo:local   "/sbin/tini -- /usr/…"   9 minutes ago   Up 9 minutes   4001/tcp, 8080-8081/tcp, 4001/udp, 0.0.0.0:5005->5001/tcp, [::]:5005->5001/tcp   rptu-dec-sys-ws24-ipfs-05-1
+90b24e86f300   kubo:local   "/sbin/tini -- /usr/…"   9 minutes ago   Up 9 minutes   4001/tcp, 8080-8081/tcp, 4001/udp, 0.0.0.0:5000->5001/tcp, [::]:5000->5001/tcp   rptu-dec-sys-ws24-ipfs-00-1
+07dcf0785c26   kubo:local   "/sbin/tini -- /usr/…"   9 minutes ago   Up 9 minutes   4001/tcp, 8080-8081/tcp, 4001/udp, 0.0.0.0:5002->5001/tcp, [::]:5002->5001/tcp   rptu-dec-sys-ws24-ipfs-02-1
+da7ab007e87c   kubo:local   "/sbin/tini -- /usr/…"   9 minutes ago   Up 9 minutes   4001/tcp, 8080-8081/tcp, 4001/udp, 0.0.0.0:5007->5001/tcp, [::]:5007->5001/tcp   rptu-dec-sys-ws24-ipfs-07-1
+c700284b554f   kubo:local   "/sbin/tini -- /usr/…"   9 minutes ago   Up 9 minutes   4001/tcp, 8080-8081/tcp, 4001/udp, 0.0.0.0:5009->5001/tcp, [::]:5009->5001/tcp   rptu-dec-sys-ws24-ipfs-09-1
+c8ef9bbef2e5   kubo:local   "/sbin/tini -- /usr/…"   9 minutes ago   Up 9 minutes   4001/tcp, 8080-8081/tcp, 4001/udp, 0.0.0.0:5008->5001/tcp, [::]:5008->5001/tcp   rptu-dec-sys-ws24-ipfs-08-1
+95b77e7e6946   kubo:local   "/sbin/tini -- /usr/…"   9 minutes ago   Up 9 minutes   4001/tcp, 8080-8081/tcp, 4001/udp, 0.0.0.0:5004->5001/tcp, [::]:5004->5001/tcp   rptu-dec-sys-ws24-ipfs-04-1
+999dabd468c2   kubo:local   "/sbin/tini -- /usr/…"   9 minutes ago   Up 9 minutes   4001/tcp, 8080-8081/tcp, 4001/udp, 0.0.0.0:5010->5001/tcp, [::]:5010->5001/tcp   rptu-dec-sys-ws24-ipfs-10-1
+b930ccdbd3d3   kubo:local   "/sbin/tini -- /usr/…"   9 minutes ago   Up 9 minutes   4001/tcp, 8080-8081/tcp, 4001/udp, 0.0.0.0:5001->5001/tcp, :::5001->5001/tcp     rptu-dec-sys-ws24-ipfs-01-1
+
+
+» bash dump-swarm-peers.sh
++ docker inspect 5b1c75764cc7
++ grep -i ipa
+            "SecondaryIPAddresses": null,
+            "IPAddress": "",
+                    "IPAMConfig": null,
+                    "IPAddress": "172.24.0.4",
++ docker inspect 04294e7585ca
++ grep -i ipa
+            "SecondaryIPAddresses": null,
+            "IPAddress": "",
+                    "IPAMConfig": null,
+                    "IPAddress": "172.24.0.6",
++ docker inspect 7070d1b79d1f
++ grep -i ipa
+            "SecondaryIPAddresses": null,
+            "IPAddress": "",
+                    "IPAMConfig": null,
+                    "IPAddress": "172.24.0.5",
++ docker inspect 90b24e86f300
++ grep -i ipa
+            "SecondaryIPAddresses": null,
+            "IPAddress": "",
+                    "IPAMConfig": null,
+                    "IPAddress": "172.24.0.2",
++ docker inspect 07dcf0785c26
++ grep -i ipa
+            "SecondaryIPAddresses": null,
+            "IPAddress": "",
+                    "IPAMConfig": null,
+                    "IPAddress": "172.24.0.7",
++ docker inspect da7ab007e87c
++ grep -i ipa
+            "SecondaryIPAddresses": null,
+            "IPAddress": "",
+                    "IPAMConfig": null,
+                    "IPAddress": "172.24.0.3",
++ docker inspect c700284b554f
++ grep -i ipa
+            "SecondaryIPAddresses": null,
+            "IPAddress": "",
+                    "IPAMConfig": null,
+                    "IPAddress": "172.24.0.11",
++ docker inspect c8ef9bbef2e5
++ grep -i ipa
+            "SecondaryIPAddresses": null,
+            "IPAddress": "",
+                    "IPAMConfig": null,
+                    "IPAddress": "172.24.0.12",
++ docker inspect 95b77e7e6946
++ grep -i ipa
+            "SecondaryIPAddresses": null,
+            "IPAddress": "",
+                    "IPAMConfig": null,
+                    "IPAddress": "172.24.0.10",
++ docker inspect 999dabd468c2
++ grep -i ipa
+            "SecondaryIPAddresses": null,
+            "IPAddress": "",
+                    "IPAMConfig": null,
+                    "IPAddress": "172.24.0.9",
++ docker inspect b930ccdbd3d3
++ grep -i ipa
+            "SecondaryIPAddresses": null,
+            "IPAddress": "",
+                    "IPAMConfig": null,
+                    "IPAddress": "172.24.0.8",
