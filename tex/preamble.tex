@@ -1,0 +1,49 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{pgfplots}
+\usepackage{vmargin}
+
+% ------------------------------------------------------------------------------
+% general
+% ------------------------------------------------------------------------------
+\setpapersize{A4}
+\setmargins
+  {2.5cm}{2.0cm}  % left and top margin
+  {16cm}{22cm}    % text width and height
+  {48pt}{36pt}    % header height and spacing
+  {0pt}{30pt}     % footer height and spacing
+
+\pagestyle{fancy}
+
+\sloppy
+\frenchspacing
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\fboxsep}{1.5mm}
+
+% ------------------------------------------------------------------------------
+% colors
+% ------------------------------------------------------------------------------
+% \definecolor{codegreen}{rgb}{0,0.6,0}
+% \definecolor{codegray}{rgb}{0.5,0.5,0.5}
+% \definecolor{codepurple}{rgb}{0.38,0,0.72}
+
+% ------------------------------------------------------------------------------
+% commands
+% ------------------------------------------------------------------------------
+\newcommand{\ceil}[1]{\left\lceil{} {#1} \right\rceil{}}
+\newcommand{\floor}[1]{\left\lfloor{} {#1} \right\rfloor{}}
+
+% ------------------------------------------------------------------------------
+% `pgfplots` setup
+% ------------------------------------------------------------------------------
+\pgfplotsset{compat=1.18}
+
+\usepgfplotslibrary{
+  dateplot,
+  statistics,
+}

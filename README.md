@@ -137,9 +137,6 @@ What's the problem? Is that intended behaviour?
 > According to the TA, the above is expected behaviour and perfectly fine,
 > because ipfs has some kind of "lazy download".
 
-- [ ] use for simulation: https://aioipfs.readthedocs.io/en/latest/
-- [ ] warmup?
-
 - run benchmark (see `benchmark/README.md` for setup instructions)
 ```
 python -m benchmark.main
@@ -147,5 +144,15 @@ python -m benchmark.main
 
 - collect docker stats
 ```
-docker compose stats --format=json | python3.12 -m stats.main > stats.ndjson
+bash stats/gather.sh
+```
+
+- generate plots (see `stats/README.md` for setup instructions)
+```
+python -m stats.plot
+```
+
+- generate report
+```
+pdflatex -output-directory tex tex/report
 ```

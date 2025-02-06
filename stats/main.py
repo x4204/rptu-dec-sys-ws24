@@ -1,5 +1,3 @@
-# docker compose stats --format=json | python3.12 -m stats.main > stats.ndjson
-
 import json
 import fileinput
 
@@ -24,6 +22,7 @@ def main():
         stats.pop('Container')
         stats.pop('ID')
         stats.pop('PIDs')
+        stats.pop('MemPerc')
         stats['Name'] = stats['Name'][18:-2]
         print(json.dumps(stats))
 

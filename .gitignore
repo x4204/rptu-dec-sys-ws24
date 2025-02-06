@@ -4,3 +4,7 @@ __pycache__
 /docker-compose.yml
 /ipfs
 /topology-state.json
+/stats/stats.ndjson
+/tex/figures/*.png
+*.aux
+*.log
