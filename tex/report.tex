@@ -46,11 +46,112 @@ the routing table and add it (\verb|go-libp2p-kad-dht/dht.go| -
 
 \section{Implementation}
 
-...
+The code is organized into two repositories:
+\begin{itemize}
+\item https://github.com/x4204/rptu-dec-sys-ws24-kubo - this repository
+contains the modified source code of Kubo
+\item https://github.com/x4204/rptu-dec-sys-ws24 - this repository contains
+everything else related to the lab (deployment, benchmark and metric gathering
+scripts as well as documentation on how to setup and run them)
+\end{itemize}
+
+\textbf{Code changes.}\\
+The following modifications were made to the source code of Kubo:
+\begin{itemize}
+\item remove hardcoded lists of bootstrap addresses in
+\verb|config/bootstrap_peers.go| and \verb|go-libp2p-kad-dht/dht_bootstrap.go|.
+Done because we don't want Kubo to automatically connect to them
+\item disable MDNS in \verb|config/init.go|. Done, because it is hardcoded to
+\verb|true| and ignores the config option \verb|Discovery.MDNS.Enabled|
+\item disable \verb|dht.rtRefreshManager|, \verb|dht.rtPeerLoop()| and
+\verb|dht.runFixLowPeersLoop()| in \verb|go-libp2p-kad-dht/dht.go|. These
+places are responsible for triggering peer lookup and adding peers to the
+routing table if any new ones were encountered while running queries
+\end{itemize}
+
+\textbf{Config changes.}\\
+Docker compose is used to run an IPFS swarm. The following swarm key is mapped
+into every container:
+\begin{lstlisting}
+/key/swarm/psk/1.0.0/
+/base16/
+3ffe35d22f310d2505b21a1b104f23d9e19534ae0a610d8717eada1d79e4f9b8
+\end{lstlisting}
+
+Additionally, the following commands run before the container starts:
+\begin{lstlisting}
+ipfs config --json Bootstrap '[]'
+ipfs config --json Routing.Type '"dht"'
+ipfs config --json Discovery.MDNS.Enabled 'false'
+\end{lstlisting}
+
+The first command removes all bootstrap nodes from the config file. The second
+command configures Kubo to use \verb|dht| routing, which is required by Kubo
+when running in swarm mode. Finally, with the third command we explicitly
+disable mDNS for peer lookup in local network.
+
+As an additional measure, we also set the environment variable
+\verb|LIBP2P_FORCE_PNET=1| to force the usage of private networks, as suggested
+in the documentation.
+
+% You need to explain the modifications you make to the source code and why these
+% modifications achieve the desired goals.
+
+\textbf{Peer behaviour simulation.}\\
+The deployment of any specific topology is automated
+\footnote{https://github.com/x4204/rptu-dec-sys-ws24/blob/master/deploy/main.py}
+and is capable of deploying nodes and linking them according to a given config
+file, but also visualising it. Topology files are just a list of nodes and
+links between them, for example:
+\begin{lstlisting}
+nodes = [
+  'ipfs-00',
+  'ipfs-01',
+  'ipfs-02',
+]
+
+links = [
+  ['ipfs-00', 'ipfs-01'],
+  ['ipfs-01', 'ipfs-02'],
+]
+\end{lstlisting}
+
+\textcolor{red}{
+  \textbf{TODO:} Then, you should elaborate on how you simulate the behaviors
+  of peers, the setup of simulations, and the simulated topologies.
+}
 
 
 \section{Results}
 
+\textcolor{red}{
+  \textbf{TODO:} You need to display your results in a clear and understandable
+  way with concrete numbers. Based on the results and profiles you obtained
+  from simula- tions, you need to compare the performance of different
+  topologies and explain the differences. Then, you need to discuss which
+  topologies result in benefits to network performance.
+}
+
+\textcolor{red}{\textbf{Benchmarking methodology}}\\
+...
+
+\textcolor{red}{\textbf{Case 1: ...}}\\
+...
+
+\textcolor{red}{\textbf{Case 2: ...}}\\
+...
+
+\textcolor{red}{\textbf{Case 2: ...}}\\
+...
+
+\textcolor{red}{\textbf{Case n: ...}}\\
+...
+
+\textcolor{red}{\textbf{Observed behaviour}}\\
+...
+
+
+\textcolor{red}{\textbf{Conclusion}}\\
 ...
 
 

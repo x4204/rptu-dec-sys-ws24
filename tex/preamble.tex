@@ -3,6 +3,7 @@
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
+\usepackage{listings}
 \usepackage{pgfplots}
 \usepackage{vmargin}
 
@@ -46,4 +47,13 @@
 \usepgfplotslibrary{
   dateplot,
   statistics,
+}
+
+% ------------------------------------------------------------------------------
+% `listings` setup
+% ------------------------------------------------------------------------------
+\lstset{
+  numbers=none,
+  basicstyle=\ttfamily,
+  upquote=true,
 }
