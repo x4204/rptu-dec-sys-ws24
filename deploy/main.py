@@ -142,7 +142,7 @@ def setup_ipfs_nodes(topology):
         time.sleep(1)
 
     nodes = {
-        name: { 'container': None, 'ip': None, 'id': None }
+        name: { 'container': None, 'ip': None, 'id': None, 'neighbors' : []}
         for name in topology['nodes']
     }
 
@@ -197,13 +197,13 @@ def setup_ipfs_nodes(topology):
 
     print('INFO: done')
     pprint.pprint(nodes)
-    with open('topology-state.json', 'w') as file:
-        file.write(json.dumps(nodes, indent=2, sort_keys=True))
 
     print('-' * 50)
     print('INFO: configuring topology')
 
     for a, b in topology['links']:
+        nodes[a]['neighbors'].append(b)
+        nodes[b]['neighbors'].append(a)
         print(f'  {a} <-> {b}')
         name = a
         address = '/'.join([
@@ -216,6 +216,10 @@ def setup_ipfs_nodes(topology):
                 'ipfs', 'swarm', 'connect', address,
             ],
         )
+
+
+    with open('topology-state.json', 'w') as file:
+        file.write(json.dumps(nodes, indent=2, sort_keys=True))
 
     print('INFO: done')
 
