@@ -251,10 +251,10 @@ def deploy_topology(topology):
 def visualise_topology(topology):
     print('digraph G {')
     for node in topology['nodes']:
-        print(f'  "{node}" [shape=square];')
+        print(f'  "{node[-2:]}" [shape=square];')
     print()
     for a, b in topology['links']:
-        print(f'  "{a}" -> "{b}" [dir=both];')
+        print(f'  "{a[-2:]}" -> "{b[-2:]}" [dir=both];')
     print('}')
 
 

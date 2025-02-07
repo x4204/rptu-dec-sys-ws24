@@ -1,5 +1,6 @@
 import collections
 import json
+import math
 import matplotlib.pyplot as plt
 import sys
 
@@ -99,14 +100,15 @@ def main():
         ('net_write', 'Network Write (Bytes)'),
     ]
 
-    plt.figure(figsize=(18, 8))
+    plt.rc('font', size=14)
+    plt.figure(figsize=(10, 6))
     for metric_name, metric_desc in metrics:
         for node in sorted(stats.keys()):
             plt.plot(
                 [stat['ts'] for stat in stats[node]],
                 [stat[metric_name] for stat in stats[node]],
                 color=COLORS[int(node[-2:])],
-                label=node,
+                label=node[-2:],
             )
 
         plt.xlabel('Time')
@@ -116,8 +118,8 @@ def main():
 
         plt.legend(
             loc='upper center',
-            ncol=len(stats),
-            bbox_to_anchor=(0.5, 1.1),
+            ncol=math.ceil(len(stats) / 2),
+            bbox_to_anchor=(0.5, 1.25),
         )
         # plt.show()
         plt.savefig(f'{out_path}/{metric_name}.png', bbox_inches='tight')

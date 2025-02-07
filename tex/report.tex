@@ -99,8 +99,8 @@ in the documentation.
 The deployment of any specific topology is automated
 \footnote{https://github.com/x4204/rptu-dec-sys-ws24/blob/master/deploy/main.py}
 and is capable of deploying nodes and linking them according to a given config
-file as well visualising it. Topology files are just a list of nodes and links
-between them, for example:
+file as well visualising it. Topology files are in TOML configuration format
+and are just a list of nodes and links between them, for example:
 \begin{lstlisting}
 nodes = [
   'ipfs-00',
@@ -114,175 +114,429 @@ links = [
 ]
 \end{lstlisting}
 
-\textcolor{red}{
-  \textbf{TODO:} Then, you should elaborate on how you simulate the behaviors
-  of peers, the setup of simulations, and the simulated topologies.
-}
-
-
-\section{Results}
-
-\textcolor{red}{
-  \textbf{TODO:} You need to display your results in a clear and understandable
-  way with concrete numbers. Based on the results and profiles you obtained
-  from simulations, you need to compare the performance of different topologies
-  and explain the differences. Then, you need to discuss which topologies
-  result in benefits to network performance.
-}
-
 \textbf{Benchmarking methodology}\\
 In every test the entire topology is recreated and the storage is wiped to
 ensure a clean state. Container metrics are collected using docker stats. File
 sizes take values from \verb|1 MiB| to \verb|500 MiB| and follow the zipf
 distribution with parameter $a=1.5$. The content of the files is randomly
 generated using \verb|/dev/urandom| device as a source for randomness. The
-benchmark runs for 5 minutes with 100 concurrent clients and a 85/15 read/write
-workload. Nodes are chosen uniformly at random for upload/download.
+benchmark runs for 5 minutes with 100 concurrent clients and a 85\%/15\%
+read/write workload. Nodes are chosen uniformly at random for upload/download.
+
+Before the benchmark starts, and just so we have some files in the system, 4
+files are uploaded to 4 different nodes, after which they are downloaded from
+one neighbour and one neighbour of the neighbour so that it's distributed
+across the network. Same actions are performed when a file is later uploaded by
+any of the clients. Then the 100 concurrent clients start and try
+uploading/downloading to/from different nodes. We set a download timeout of 30
+seconds so that if the file doesn't become available in this time interval,
+then the query is dropped and the client tries to download another random file.
+
+
+\newpage
+\section{Results}
 
 \textcolor{red}{\textbf{TODO: compute average for every usecase and metric}}\\
 
-\subsection{\textcolor{red}{Case 1: Kubo without source code modifications}}
+\subsection{Case 1: Kubo without source code modifications}
 
+In case of the original Kubo implementation, where it is free to connect to
+arbitrary nodes, we notice a very smooth network usage. The disk usage, though,
+is spiky in some places, especially disk reads. On the other hand, disk reads
+are more evenly distributed among nodes than disk writes. CPU usage is more or
+less smooth in the first part, except for the beginning of the benchmark. It
+becomes unstable at the timestamp around 12:14:40 as seen in figure
+\ref{fig:original-cpu_usage} where nodes split into two groups: one with a
+higher CPU usage and another one with lower relative usage but both still have
+higher absolute usage than before. It coincides with the big spike in disk
+reads from figure \ref{fig:original-blk_read}. We do not really know what
+happened there, but maybe it was a big file that had to be propagated through
+the network.
+
+% \begin{figure}[H]
+% \captionsetup{justification=centering,width=0.8\linewidth}
+% \includegraphics[width=0.7\linewidth]{figures/topologies/original.png}
+% \caption{Original Kubo -- topology}
+% \label{fig:original-topology}
+% \end{figure}
+
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
-\includegraphics[width=\linewidth]{figures/original/blk_read.png}
-\caption{Original Kubo -- amount of bytes read from disk}
-\end{figure}
-\begin{figure}[H]
-\includegraphics[width=\linewidth]{figures/original/blk_write.png}
-\caption{Original Kubo -- amount of bytes written to disk}
-\end{figure}
-\begin{figure}[H]
-\includegraphics[width=\linewidth]{figures/original/cpu_usage.png}
-\caption{Original Kubo -- CPU usage}
-\end{figure}
-\begin{figure}[H]
-\includegraphics[width=\linewidth]{figures/original/mem_usage.png}
-\caption{Original Kubo -- memory usage}
-\end{figure}
-\begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/original/net_read.png}
 \caption{Original Kubo -- amount of bytes received over network}
+\label{fig:original-net_read}
 \end{figure}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/original/net_write.png}
 \caption{Original Kubo -- amount of bytes transmitted over network}
+\label{fig:original-net_write}
 \end{figure}
+\end{minipage}
+
+\begin{minipage}{0.5\linewidth}
+\begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
+\includegraphics[width=\linewidth]{figures/original/blk_read.png}
+\caption{Original Kubo -- amount of bytes read from disk}
+\label{fig:original-blk_read}
+\end{figure}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
+\includegraphics[width=\linewidth]{figures/original/blk_write.png}
+\caption{Original Kubo -- amount of bytes written to disk}
+\label{fig:original-blk_write}
+\end{figure}
+\end{minipage}
+
+\begin{minipage}{0.5\linewidth}
+\begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
+\includegraphics[width=\linewidth]{figures/original/cpu_usage.png}
+\caption{Original Kubo -- CPU usage}
+\label{fig:original-cpu_usage}
+\end{figure}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
+\includegraphics[width=\linewidth]{figures/original/mem_usage.png}
+\caption{Original Kubo -- memory usage}
+\label{fig:original-mem_usage}
+\end{figure}
+\end{minipage}
 
 
-\subsection{\textcolor{red}{Case 2: Ring Topology}}
+\newpage
+\subsection{Case 2: Ring Topology}
 
+\begin{wrapfigure}{r}{0.5\textwidth}
+\centering
+\captionsetup{justification=centering,width=0.6\linewidth}
+\includegraphics[width=0.8\linewidth]{figures/topologies/ring.png}
+\caption{Ring -- topology}
+\label{fig:ring-topology}
+
+\end{wrapfigure}
+Figure \ref{fig:ring-topology} displays how nodes are connected to each other.
+It can be observed in figure \ref{fig:ring-blk_read} that disk reads don't
+happen until much later in the benchmarking process. We think that is because
+of the way files propagate through the network. Since a node cannot talk
+directly to the one that has the file, it has to wait until eventually one of
+its neighbours has it. This way, many initial requests for the file just time
+out and we see a big interval of disk read inactivity in the beginning.
+
+On top of that, all metrics exhibit very uneven behaviour between nodes. There
+are some nodes that eventually serve a lot of files and others that have very
+little activity. The ones that are the most active are in a continuous range in
+the ring, namely the nodes \verb|07| through \verb|01|. It might just happen
+that by change more files were uploaded and downloaded in the beginning
+specifically in that part of the ring, which would make the file spread sooner
+there.
+
+Finally, the CPU usage is very spiky and also comes in bursts as can be seen in
+figure \ref{fig:ring-cpu_usage}. We think that the silent periods are caused by
+the fact that any given node has only two neighbours and it cannot not directly
+reach the node that has the file, so it has to wait for one of the neighbours
+to get the file. The spikes are probably happening when the node finally gets
+the file. Since there might be many clients waiting for the same file from the
+same node, Kubo has to process and send it to all of them at the same time once
+the file becomes available, hence the sudden increase in CPU usage, after which
+it also quickly decreases.
+
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
-\includegraphics[width=\linewidth]{figures/ring/blk_read.png}
-\caption{Ring topology -- amount of bytes read from disk}
-\end{figure}
-\begin{figure}[H]
-\includegraphics[width=\linewidth]{figures/ring/blk_write.png}
-\caption{Ring topology -- amount of bytes written to disk}
-\end{figure}
-\begin{figure}[H]
-\includegraphics[width=\linewidth]{figures/ring/cpu_usage.png}
-\caption{Ring topology -- CPU usage}
-\end{figure}
-\begin{figure}[H]
-\includegraphics[width=\linewidth]{figures/ring/mem_usage.png}
-\caption{Ring topology -- memory usage}
-\end{figure}
-\begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/ring/net_read.png}
 \caption{Ring topology -- amount of bytes received over network}
+\label{fig:ring-net_read}
 \end{figure}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/ring/net_write.png}
 \caption{Ring topology -- amount of bytes transmitted over network}
+\label{fig:ring-net_write}
 \end{figure}
+\end{minipage}
 
-
-\subsection{\textcolor{red}{Case 3: Grid Topology}}
-
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
+\includegraphics[width=\linewidth]{figures/ring/blk_read.png}
+\caption{Ring topology -- amount of bytes read from disk}
+\label{fig:ring-blk_read}
+\end{figure}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
+\includegraphics[width=\linewidth]{figures/ring/blk_write.png}
+\caption{Ring topology -- amount of bytes written to disk}
+\label{fig:ring-blk_write}
+\end{figure}
+\end{minipage}
+
+\begin{minipage}{0.5\linewidth}
+\begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
+\includegraphics[width=\linewidth]{figures/ring/cpu_usage.png}
+\caption{Ring topology -- CPU usage}
+\label{fig:ring-cpu_usage}
+\end{figure}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
+\includegraphics[width=\linewidth]{figures/ring/mem_usage.png}
+\caption{Ring topology -- memory usage}
+\label{fig:ring-mem_usage}
+\end{figure}
+\end{minipage}
+
+
+\newpage
+\subsection{Case 3: Grid Topology}
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+\centering
+\captionsetup{justification=centering,width=0.6\linewidth}
+\includegraphics[width=0.55\linewidth]{figures/topologies/grid.png}
+\caption{Grid -- topology}
+\label{fig:grid-topology}
+\end{wrapfigure}
+
+Figure \ref{fig:grid-topology} displays how nodes are connected to each other.
+Grid topology shows a similar overall behaviour to ring topology, except one
+big difference in terms of disk usage. In case of ring topology there are
+several very distinctive spikes in both reading and writing, whereas in grid
+topology the spikes are much smaller and the usage is smoother generally. We
+think that is thanks to the fact that nodes have more neighbours and so if a
+file becomes available at one node, then more other nodes can get access to it.
+We also observe that the nodes with the least amount of activity are usually
+the ones with the least amount of neighbours, namely: the nodes located in the
+corners of the grid.
+\newline
+
+\begin{minipage}{0.5\linewidth}
+\begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/grid/blk_read.png}
 \caption{Grid topology -- amount of bytes read from disk}
+\label{fig:grid-net_read}
 \end{figure}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/grid/blk_write.png}
 \caption{Grid topology -- amount of bytes written to disk}
+\label{fig:grid-net_write}
 \end{figure}
+\end{minipage}
+
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/grid/cpu_usage.png}
 \caption{Grid topology -- CPU usage}
+\label{fig:grid-blk_read}
 \end{figure}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/grid/mem_usage.png}
 \caption{Grid topology -- memory usage}
+\label{fig:grid-blk_write}
 \end{figure}
+\end{minipage}
+
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/grid/net_read.png}
 \caption{Grid topology -- amount of bytes received over network}
+\label{fig:grid-cpu_usage}
 \end{figure}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/grid/net_write.png}
 \caption{Grid topology -- amount of bytes transmitted over network}
+\label{fig:grid-mem_usage}
 \end{figure}
+\end{minipage}
 
 
-\subsection{\textcolor{red}{Case 4: Random Graph Topology}}
+\newpage
+\subsection{Case 4: Random Graph Topology}
 
+\begin{wrapfigure}{r}{0.5\textwidth}
+\centering
+\captionsetup{justification=centering,width=0.8\linewidth}
+\includegraphics[width=0.7\linewidth]{figures/topologies/graph-random.png}
+\caption{Random graph -- topology}
+\label{fig:graph-random-topology}
+\end{wrapfigure}
+
+Figure \ref{fig:graph-random-topology} displays how nodes are connected to each
+other. Results for random graph topology are similar in a way to the ones for
+grid topology. The same uneven load is observed in case of disk I/O as well as
+network I/O, but in contrast to a grid, in a random graph there are little to
+no spikes being observed. The big difference is CPU usage, which is not bursty
+and more or less consistent across nodes, but it's spiky. Also, we observe that
+the nodes that get the most network traffic are usually the ones that have many
+neighbours, for example: nodes \verb|06|, \verb|01|, \verb|02|.
+
+\textcolor{white}{.}\\
+\\
+\\
+\\
+\\
+\\
+
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/graph-random/blk_read.png}
 \caption{Random graph topology -- amount of bytes read from disk}
+\label{fig:graph-random-net_read}
 \end{figure}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/graph-random/blk_write.png}
 \caption{Random graph topology -- amount of bytes written to disk}
+\label{fig:graph-random-net_write}
 \end{figure}
+\end{minipage}
+
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/graph-random/cpu_usage.png}
 \caption{Random graph topology -- CPU usage}
+\label{fig:graph-random-blk_read}
 \end{figure}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/graph-random/mem_usage.png}
 \caption{Random graph topology -- memory usage}
+\label{fig:graph-random-blk_write}
 \end{figure}
+\end{minipage}
+
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/graph-random/net_read.png}
 \caption{Random graph topology -- amount of bytes received over network}
+\label{fig:graph-random-cpu_usage}
 \end{figure}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/graph-random/net_write.png}
 \caption{Random graph topology -- amount of bytes transmitted over network}
+\label{fig:graph-random-mem_usage}
 \end{figure}
+\end{minipage}
 
 
-\subsection{\textcolor{red}{Case 5: Complete Graph Topology}}
+\newpage
+\subsection{Case 5: Complete Graph Topology}
 
+\begin{wrapfigure}{r}{0.5\textwidth}
+\centering
+\captionsetup{justification=centering,width=0.8\linewidth}
+\includegraphics[width=0.7\linewidth]{figures/topologies/graph-complete.png}
+\caption{Complete graph -- topology}
+\label{fig:graph-complete-topology}
+\end{wrapfigure}
+
+Figure \ref{fig:graph-complete-topology} displays how nodes are connected to
+each other. This is probably the topology that gives the most visually
+satisfying results. Disk and network I/O is spread more or less evenly across
+nodes and are very smooth, almost straight lines. CPU usage is the best among
+all topologies. There are no nodes that are loaded more than others and they
+all and keep the CPU usage very consistent start to finish at around 50\%. This
+is all thanks to the fact that all nodes have all other nodes as neighbours, so
+they can directly access the files on other instances without having to wait.
+
+\textcolor{white}{.}\\
+\\
+\\
+\\
+\\
+\\
+
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/graph-complete/blk_read.png}
 \caption{Complete graph topology -- amount of bytes read from disk}
+\label{fig:graph-complete-net_read}
 \end{figure}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/graph-complete/blk_write.png}
 \caption{Complete graph topology -- amount of bytes written to disk}
+\label{fig:graph-complete-net_write}
 \end{figure}
+\end{minipage}
+
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/graph-complete/cpu_usage.png}
 \caption{Complete graph topology -- CPU usage}
+\label{fig:graph-complete-blk_read}
 \end{figure}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/graph-complete/mem_usage.png}
 \caption{Complete graph topology -- memory usage}
+\label{fig:graph-complete-blk_write}
 \end{figure}
+\end{minipage}
+
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/graph-complete/net_read.png}
 \caption{Complete graph topology -- amount of bytes received over network}
+\label{fig:graph-complete-cpu_usage}
 \end{figure}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
+\captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/graph-complete/net_write.png}
 \caption{Complete graph topology -- amount of bytes transmitted over network}
+\label{fig:graph-complete-mem_usage}
 \end{figure}
+\end{minipage}
 
 
 \subsection{\textcolor{red}{Conclusion}}
 ...
+best performance, worst performance, decent enough
 
 
 \end{document}
