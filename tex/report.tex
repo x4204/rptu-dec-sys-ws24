@@ -347,7 +347,7 @@ Exact numbers for every metric are displayed in tables \ref{tab:grid-avg} and
 every node. Similarly, table \ref{tab:grid-total} contains metrics totals for
 every node.
 
-\textcolor{white}{.}\\
+\textcolor{white}{.}\\\\
 
 \begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
@@ -568,9 +568,30 @@ every node.
 \input{tex/figures/graph-complete/total}
 
 
-\subsection{\textcolor{red}{Conclusion}}
-...
-best performance, worst performance, decent enough
+\subsection{Conclusion}
+
+In this lab we had a detailed look at how Kubo's behaviour and performance
+changes depending on the topology. Out of all topologies, the complete graph
+performed the best. The behaviour was consistent across nodes with very smooth
+disk and network I/O and more or less same load on every node. The complete
+opposite of that was the ring topology, which performed the worst. The disk and
+network usage was very uneven between nodes and CPU load was very spiky. We
+think the main cause is that the ring topology makes it difficult to find a
+file if it's not already on the node and also because files do not propagate
+fast enough through the network. As a result many, clients just timeout while
+running a query.
+
+A general pattern became apparent, namely that the more neighbours a node has,
+the higher the chance that the node will be able to find the file in the
+network. This was made very obvious in random graph topology where nodes with
+most neighbours are able to serve a bigger chunk of queries compared to nodes
+with just one or two neighbours.
+
+In our experiments, the original implementation connects all nodes in a
+complete graph, but that is probably because there are not enough nodes to
+simulate real life connection behaviour. In reality, having a complete graph
+wouldn't scale well, so at some point the topology would start to look closer
+to a random graph as in Case 4 and exhibit similar performance characteristics.
 
 
 \end{document}
