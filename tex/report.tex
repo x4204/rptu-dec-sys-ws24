@@ -114,28 +114,32 @@ links = [
 ]
 \end{lstlisting}
 
+The deployment script then generates a \verb|docker-compose.yml| file with the
+specified nodes and wipes the storage. After that, it configures the nodes,
+starts and waits for them all to become available and finally links them
+according to the specified topology.
+
 \textbf{Benchmarking methodology}\\
 In every test the entire topology is recreated and the storage is wiped to
-ensure a clean state. Container metrics are collected using docker stats. File
-sizes take values from \verb|1 MiB| to \verb|500 MiB| and follow the zipf
-distribution with parameter $a=1.5$. The content of the files is randomly
-generated using \verb|/dev/urandom| device as a source for randomness. The
-benchmark runs for 5 minutes with 100 concurrent clients and a 85\%/15\%
-read/write workload. Nodes are chosen uniformly at random for upload/download.
+ensure a clean state. Container metrics are collected using
+\verb|docker stats|. File sizes take values from \verb|1 MiB| to \verb|500 MiB|
+and follow the zipf distribution with parameter $a=1.5$. The content of the
+files is randomly generated using \verb|/dev/urandom| device as a source for
+randomness. The benchmark runs for 5 minutes with 100 concurrent clients and a
+85\% read/15\% write workload. Nodes are chosen uniformly at random for
+upload/download.
 
 Before the benchmark starts, and just so we have some files in the system, 4
 files are uploaded to 4 different nodes, after which they are downloaded from
 one neighbour and one neighbour of the neighbour so that it's distributed
 across the network. Then the 100 concurrent clients start and try
 uploading/downloading to/from different nodes. We set a download timeout of 30
-seconds so that if the file doesn't become available in this time interval,
+seconds, so that if the file doesn't become available in this time interval,
 then the query is dropped and the client tries to download another random file.
 
 
 \newpage
 \section{Results}
-
-\textcolor{red}{\textbf{TODO: compute average for every usecase and metric}}\\
 
 \subsection{Case 1: Kubo without source code modifications}
 
@@ -147,16 +151,21 @@ then the query is dropped and the client tries to download another random file.
 \label{fig:original-topology}
 \end{wrapfigure}
 
-Figure \ref{fig:original-topology} displays how nodes are connected to each
-other. Since nodes decide on their own how to connect to each other, the
+Since nodes decide on their own how to connect to each other, the
 information about the topology was gathered after the benchmark. The nodes
 formed a complete graph.
 
 In case of the original Kubo implementation we notice a very smooth network
 usage and disk usage. There are no nodes that have little to no activity. CPU
-usage is consistent across nodes and is kept at around 55\% start to finish.
+usage is consistent across nodes and is kept at around 50\% start to finish.
 
-\textcolor{white}{.}\\\\\\\\\\\\\\\\\\\\
+Figure \ref{fig:original-topology} displays how nodes are connected to each
+other. Exact numbers for every metric are displayed in tables
+\ref{tab:original-avg} and \ref{tab:original-total}. Table
+\ref{tab:original-avg} contains metrics averages for every node. Similarly,
+table \ref{tab:original-total} contains metrics totals for every node.
+
+\textcolor{white}{.}\\\\\\\\\\\\
 
 \begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
@@ -209,6 +218,9 @@ usage is consistent across nodes and is kept at around 55\% start to finish.
 \end{figure}
 \end{minipage}
 
+\input{tex/figures/original/avg}
+\input{tex/figures/original/total}
+
 
 \newpage
 \subsection{Case 2: Ring Topology}
@@ -221,19 +233,19 @@ usage is consistent across nodes and is kept at around 55\% start to finish.
 \label{fig:ring-topology}
 
 \end{wrapfigure}
-Figure \ref{fig:ring-topology} displays how nodes are connected to each other.
 It can be observed in figure \ref{fig:ring-blk_read} that disk reads don't
 happen until much later in the benchmarking process. We think that is because
-of the way files propagate through the network. Since a node cannot talk
-directly to the one that has the file, it has to wait until eventually one of
-its neighbours has it. This way, many initial requests for the file just time
-out and we see a big interval of disk read inactivity in the beginning.
+of the way files propagate through the network. Since a node is unlikely to be
+able to talk directly to the one that has the file, it has to wait until
+eventually one of its neighbours has it. This way, many initial requests for
+the file just time out and we see a big interval of disk read inactivity in the
+beginning.
 
 On top of that, all metrics exhibit very uneven behaviour between nodes. There
 are some nodes that eventually serve a lot of files and others that have very
 little activity. The ones that are the most active are in a continuous range in
-the ring, namely the nodes \verb|07| through \verb|01|. It might just happen
-that by change more files were uploaded and downloaded in the beginning
+the ring, namely the nodes \verb|07| through \verb|00|. It might just happen
+that by chance more files were uploaded and downloaded in the beginning
 specifically in that part of the ring, which would make the file spread sooner
 there.
 
@@ -246,6 +258,12 @@ the file. Since there might be many clients waiting for the same file from the
 same node, Kubo has to process and send it to all of them at the same time once
 the file becomes available, hence the sudden increase in CPU usage, after which
 it also quickly decreases.
+
+Figure \ref{fig:ring-topology} displays how nodes are connected to each other.
+Exact numbers for every metric are displayed in tables \ref{tab:ring-avg} and
+\ref{tab:ring-total}. Table \ref{tab:ring-avg} contains metrics averages for
+every node. Similarly, table \ref{tab:ring-total} contains metrics totals for
+every node.
 
 \begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
@@ -298,19 +316,21 @@ it also quickly decreases.
 \end{figure}
 \end{minipage}
 
+\input{tex/figures/ring/avg}
+\input{tex/figures/ring/total}
+
 
 \newpage
 \subsection{Case 3: Grid Topology}
 
 \begin{wrapfigure}{r}{0.5\textwidth}
 \centering
-\captionsetup{justification=centering,width=0.6\linewidth}
-\includegraphics[width=0.55\linewidth]{figures/topologies/grid.png}
+\captionsetup{justification=centering,width=0.5\linewidth}
+\includegraphics[width=0.7\linewidth]{figures/topologies/grid.png}
 \caption{Grid -- topology}
 \label{fig:grid-topology}
 \end{wrapfigure}
 
-Figure \ref{fig:grid-topology} displays how nodes are connected to each other.
 Grid topology shows a similar overall behaviour to ring topology, except one
 big difference in terms of disk usage. In case of ring topology there are
 several very distinctive spikes in both reading and writing, whereas in grid
@@ -320,7 +340,14 @@ file becomes available at one node, then more other nodes can get access to it.
 We also observe that the nodes with the least amount of activity are usually
 the ones with the least amount of neighbours, namely: the nodes located in the
 corners of the grid.
-\newline
+
+Figure \ref{fig:grid-topology} displays how nodes are connected to each other.
+Exact numbers for every metric are displayed in tables \ref{tab:grid-avg} and
+\ref{tab:grid-total}. Table \ref{tab:grid-avg} contains metrics averages for
+every node. Similarly, table \ref{tab:grid-total} contains metrics totals for
+every node.
+
+\textcolor{white}{.}\\
 
 \begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
@@ -373,6 +400,9 @@ corners of the grid.
 \end{figure}
 \end{minipage}
 
+\input{tex/figures/grid/avg}
+\input{tex/figures/grid/total}
+
 
 \newpage
 \subsection{Case 4: Random Graph Topology}
@@ -385,16 +415,21 @@ corners of the grid.
 \label{fig:graph-random-topology}
 \end{wrapfigure}
 
-Figure \ref{fig:graph-random-topology} displays how nodes are connected to each
-other. Results for random graph topology are similar in a way to the ones for
-grid topology. The same uneven load is observed in case of disk I/O as well as
+Results for random graph topology are similar in a way to the ones for grid
+topology. The same uneven load is observed in case of disk I/O as well as
 network I/O, but in contrast to a grid, in a random graph there are little to
 no spikes being observed. The big difference is CPU usage, which is not bursty
 and more or less consistent across nodes, but it's spiky. Also, we observe that
 the nodes that get the most network traffic are usually the ones that have many
 neighbours, for example: nodes \verb|06|, \verb|01|, \verb|02|.
 
-\textcolor{white}{.}\\\\\\\\\\\\
+Figure \ref{fig:graph-random-topology} displays how nodes are connected to each
+other. Exact numbers for every metric are displayed in tables
+\ref{tab:graph-random-avg} and \ref{tab:graph-random-total}. Table
+\ref{tab:graph-random-avg} contains metrics averages for every node. Similarly,
+table \ref{tab:graph-random-total} contains metrics totals for every node.
+
+\textcolor{white}{.}\\
 
 \begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
@@ -447,6 +482,9 @@ neighbours, for example: nodes \verb|06|, \verb|01|, \verb|02|.
 \end{figure}
 \end{minipage}
 
+\input{tex/figures/graph-random/avg}
+\input{tex/figures/graph-random/total}
+
 
 \newpage
 \subsection{Case 5: Complete Graph Topology}
@@ -459,15 +497,21 @@ neighbours, for example: nodes \verb|06|, \verb|01|, \verb|02|.
 \label{fig:graph-complete-topology}
 \end{wrapfigure}
 
-Figure \ref{fig:graph-complete-topology} displays how nodes are connected to
-each other. Disk and network I/O is spread more or less evenly across nodes and
-are very smooth, almost straight lines. CPU usage is the best among all
-topologies. There are no nodes that are loaded more than others and they all
-and keep the CPU usage very consistent start to finish at around 50\%. This is
-all thanks to the fact that all nodes have all other nodes as neighbours, so
-they can directly access the files on other instances without having to wait.
+Disk and network I/O is spread more or less evenly across nodes and are very
+smooth, almost straight lines. CPU usage is the best among all topologies.
+There are no nodes that are loaded more than others and they all and keep the
+CPU usage very consistent start to finish at around 45\%. This is all thanks to
+the fact that all nodes have all other nodes as neighbours, so they can
+directly access the files on other instances without having to wait.
 
-\textcolor{white}{.}\\\\\\\\\\\\
+Figure \ref{fig:graph-complete-topology} displays how nodes are connected to
+each other. Exact numbers for every metric are displayed in tables
+\ref{tab:graph-complete-avg} and \ref{tab:graph-complete-total}. Table
+\ref{tab:graph-complete-avg} contains metrics averages for every node.
+Similarly, table \ref{tab:graph-complete-total} contains metrics totals for
+every node.
+
+\textcolor{white}{.}\\\\\\
 
 \begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
@@ -519,6 +563,9 @@ they can directly access the files on other instances without having to wait.
 \label{fig:graph-complete-mem_usage}
 \end{figure}
 \end{minipage}
+
+\input{tex/figures/graph-complete/avg}
+\input{tex/figures/graph-complete/total}
 
 
 \subsection{\textcolor{red}{Conclusion}}
