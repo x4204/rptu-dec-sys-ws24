@@ -1,0 +1,165 @@
+ipfs-00
+Average values:
+avg_cpu_usage: 13.85263565891473
+avg_mem_usage: 243278394.1364341
+avg_blk_read: 3557500.0
+avg_blk_write: 44056093.75
+avg_net_read: 42811421.875
+avg_net_write: 79062090.625
+
+Total values:
+total_blk_read: 115000000
+total_blk_write: 1410000000
+total_net_read: 1370000000
+total_net_write: 2530000000
+
+ipfs-01
+Average values:
+avg_cpu_usage: 7.589891472868218
+avg_mem_usage: 102414742.68992248
+avg_blk_read: 3206343.75
+avg_blk_write: 23868593.75
+avg_net_read: 23467659.375
+avg_net_write: 42812103.125
+
+Total values:
+total_blk_read: 103000000
+total_blk_write: 764000000
+total_net_read: 751000000
+total_net_write: 1370000000
+
+ipfs-02
+Average values:
+avg_cpu_usage: 6.155891472868217
+avg_mem_usage: 157265216.77209303
+avg_blk_read: 3225000.0
+avg_blk_write: 19993593.75
+avg_net_read: 19436403.125
+avg_net_write: 36562090.625
+
+Total values:
+total_blk_read: 129000000
+total_blk_write: 640000000
+total_net_read: 622000000
+total_net_write: 1170000000
+
+ipfs-03
+Average values:
+avg_cpu_usage: 5.134449612403101
+avg_mem_usage: 109404940.41085272
+avg_blk_read: 1425565.625
+avg_blk_write: 15056093.75
+avg_net_read: 14811412.5
+avg_net_write: 29124596.875
+
+Total values:
+total_blk_read: 45700000
+total_blk_write: 482000000
+total_net_read: 474000000
+total_net_write: 932000000
+
+ipfs-04
+Average values:
+avg_cpu_usage: 6.147953488372093
+avg_mem_usage: 128275374.28062016
+avg_blk_read: 5762187.5
+avg_blk_write: 20087343.75
+avg_net_read: 19842665.625
+avg_net_write: 30687096.875
+
+Total values:
+total_blk_read: 186000000
+total_blk_write: 643000000
+total_net_read: 635000000
+total_net_write: 982000000
+
+ipfs-05
+Average values:
+avg_cpu_usage: 7.669550387596899
+avg_mem_usage: 112238664.1627907
+avg_blk_read: 3276906.25
+avg_blk_write: 28399843.75
+avg_net_read: 25530165.625
+avg_net_write: 42812096.875
+
+Total values:
+total_blk_read: 105000000
+total_blk_write: 909000000
+total_net_read: 817000000
+total_net_write: 1370000000
+
+ipfs-06
+Average values:
+avg_cpu_usage: 8.599271317829457
+avg_mem_usage: 175978770.4883721
+avg_blk_read: 4203750.0
+avg_blk_write: 26618593.75
+avg_net_read: 25686403.125
+avg_net_write: 49687096.875
+
+Total values:
+total_blk_read: 138000000
+total_blk_write: 852000000
+total_net_read: 822000000
+total_net_write: 1590000000
+
+ipfs-07
+Average values:
+avg_cpu_usage: 15.549441860465116
+avg_mem_usage: 368914088.40620154
+avg_blk_read: 17183906.25
+avg_blk_write: 47806093.75
+avg_net_read: 44373934.375
+avg_net_write: 116874596.875
+
+Total values:
+total_blk_read: 550000000
+total_blk_write: 1530000000
+total_net_read: 1420000000
+total_net_write: 3740000000
+
+ipfs-08
+Average values:
+avg_cpu_usage: 25.17990697674419
+avg_mem_usage: 333345919.08217055
+avg_blk_read: 32499231.25
+avg_blk_write: 69993593.75
+avg_net_read: 68123912.5
+avg_net_write: 154999593.75
+
+Total values:
+total_blk_read: 1040000000
+total_blk_write: 2240000000
+total_net_read: 2180000000
+total_net_write: 4960000000
+
+ipfs-09
+Average values:
+avg_cpu_usage: 26.757116279069766
+avg_mem_usage: 463265200.76899225
+avg_blk_read: 22651375.0
+avg_blk_write: 72181093.75
+avg_net_read: 70311412.5
+avg_net_write: 172187093.75
+
+Total values:
+total_blk_read: 725000000
+total_blk_write: 2310000000
+total_net_read: 2250000000
+total_net_write: 5510000000
+
+ipfs-10
+Average values:
+avg_cpu_usage: 15.632108527131782
+avg_mem_usage: 412845862.51937985
+avg_blk_read: 6311346.875
+avg_blk_write: 49056093.75
+avg_net_read: 47811428.125
+avg_net_write: 91562096.875
+
+Total values:
+total_blk_read: 202000000
+total_blk_write: 1570000000
+total_net_read: 1530000000
+total_net_write: 2930000000
+
