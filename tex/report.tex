@@ -126,8 +126,7 @@ read/write workload. Nodes are chosen uniformly at random for upload/download.
 Before the benchmark starts, and just so we have some files in the system, 4
 files are uploaded to 4 different nodes, after which they are downloaded from
 one neighbour and one neighbour of the neighbour so that it's distributed
-across the network. Same actions are performed when a file is later uploaded by
-any of the clients. Then the 100 concurrent clients start and try
+across the network. Then the 100 concurrent clients start and try
 uploading/downloading to/from different nodes. We set a download timeout of 30
 seconds so that if the file doesn't become available in this time interval,
 then the query is dropped and the client tries to download another random file.
@@ -140,25 +139,24 @@ then the query is dropped and the client tries to download another random file.
 
 \subsection{Case 1: Kubo without source code modifications}
 
-In case of the original Kubo implementation, where it is free to connect to
-arbitrary nodes, we notice a very smooth network usage. The disk usage, though,
-is spiky in some places, especially disk reads. On the other hand, disk reads
-are more evenly distributed among nodes than disk writes. CPU usage is more or
-less smooth in the first part, except for the beginning of the benchmark. It
-becomes unstable at the timestamp around 12:14:40 as seen in figure
-\ref{fig:original-cpu_usage} where nodes split into two groups: one with a
-higher CPU usage and another one with lower relative usage but both still have
-higher absolute usage than before. It coincides with the big spike in disk
-reads from figure \ref{fig:original-blk_read}. We do not really know what
-happened there, but maybe it was a big file that had to be propagated through
-the network.
+\begin{wrapfigure}{r}{0.5\textwidth}
+\centering
+\captionsetup{justification=centering,width=0.6\linewidth}
+\includegraphics[width=0.8\linewidth]{figures/topologies/original.png}
+\caption{Original Kubo -- topology}
+\label{fig:original-topology}
+\end{wrapfigure}
 
-% \begin{figure}[H]
-% \captionsetup{justification=centering,width=0.8\linewidth}
-% \includegraphics[width=0.7\linewidth]{figures/topologies/original.png}
-% \caption{Original Kubo -- topology}
-% \label{fig:original-topology}
-% \end{figure}
+Figure \ref{fig:original-topology} displays how nodes are connected to each
+other. Since nodes decide on their own how to connect to each other, the
+information about the topology was gathered after the benchmark. The nodes
+formed a complete graph.
+
+In case of the original Kubo implementation we notice a very smooth network
+usage and disk usage. There are no nodes that have little to no activity. CPU
+usage is consistent across nodes and is kept at around 55\% start to finish.
+
+\textcolor{white}{.}\\\\\\\\\\\\\\\\\\\\
 
 \begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
@@ -172,7 +170,7 @@ the network.
 \begin{figure}[H]
 \captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/original/net_write.png}
-\caption{Original Kubo -- amount of bytes transmitted over network}
+\caption{Original Kubo -- amount of bytes sent over network}
 \label{fig:original-net_write}
 \end{figure}
 \end{minipage}
@@ -241,7 +239,7 @@ there.
 
 Finally, the CPU usage is very spiky and also comes in bursts as can be seen in
 figure \ref{fig:ring-cpu_usage}. We think that the silent periods are caused by
-the fact that any given node has only two neighbours and it cannot not directly
+the fact that any given node has only two neighbours and it cannot directly
 reach the node that has the file, so it has to wait for one of the neighbours
 to get the file. The spikes are probably happening when the node finally gets
 the file. Since there might be many clients waiting for the same file from the
@@ -261,7 +259,7 @@ it also quickly decreases.
 \begin{figure}[H]
 \captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/ring/net_write.png}
-\caption{Ring topology -- amount of bytes transmitted over network}
+\caption{Ring topology -- amount of bytes sent over network}
 \label{fig:ring-net_write}
 \end{figure}
 \end{minipage}
@@ -370,7 +368,7 @@ corners of the grid.
 \begin{figure}[H]
 \captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/grid/net_write.png}
-\caption{Grid topology -- amount of bytes transmitted over network}
+\caption{Grid topology -- amount of bytes sent over network}
 \label{fig:grid-mem_usage}
 \end{figure}
 \end{minipage}
@@ -396,12 +394,7 @@ and more or less consistent across nodes, but it's spiky. Also, we observe that
 the nodes that get the most network traffic are usually the ones that have many
 neighbours, for example: nodes \verb|06|, \verb|01|, \verb|02|.
 
-\textcolor{white}{.}\\
-\\
-\\
-\\
-\\
-\\
+\textcolor{white}{.}\\\\\\\\\\\\
 
 \begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
@@ -449,7 +442,7 @@ neighbours, for example: nodes \verb|06|, \verb|01|, \verb|02|.
 \begin{figure}[H]
 \captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/graph-random/net_write.png}
-\caption{Random graph topology -- amount of bytes transmitted over network}
+\caption{Random graph topology -- amount of bytes sent over network}
 \label{fig:graph-random-mem_usage}
 \end{figure}
 \end{minipage}
@@ -467,20 +460,14 @@ neighbours, for example: nodes \verb|06|, \verb|01|, \verb|02|.
 \end{wrapfigure}
 
 Figure \ref{fig:graph-complete-topology} displays how nodes are connected to
-each other. This is probably the topology that gives the most visually
-satisfying results. Disk and network I/O is spread more or less evenly across
-nodes and are very smooth, almost straight lines. CPU usage is the best among
-all topologies. There are no nodes that are loaded more than others and they
-all and keep the CPU usage very consistent start to finish at around 50\%. This
-is all thanks to the fact that all nodes have all other nodes as neighbours, so
+each other. Disk and network I/O is spread more or less evenly across nodes and
+are very smooth, almost straight lines. CPU usage is the best among all
+topologies. There are no nodes that are loaded more than others and they all
+and keep the CPU usage very consistent start to finish at around 50\%. This is
+all thanks to the fact that all nodes have all other nodes as neighbours, so
 they can directly access the files on other instances without having to wait.
 
-\textcolor{white}{.}\\
-\\
-\\
-\\
-\\
-\\
+\textcolor{white}{.}\\\\\\\\\\\\
 
 \begin{minipage}{0.5\linewidth}
 \begin{figure}[H]
@@ -528,7 +515,7 @@ they can directly access the files on other instances without having to wait.
 \begin{figure}[H]
 \captionsetup{justification=centering,width=0.8\linewidth}
 \includegraphics[width=\linewidth]{figures/graph-complete/net_write.png}
-\caption{Complete graph topology -- amount of bytes transmitted over network}
+\caption{Complete graph topology -- amount of bytes sent over network}
 \label{fig:graph-complete-mem_usage}
 \end{figure}
 \end{minipage}
